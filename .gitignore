@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /server/static
+/server/debug.test
+/server/debug
 
 # dependencies
 /node_modules
