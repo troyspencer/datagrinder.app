@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { GearsComponent } from './gears/gears.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GearsComponent
   ],
   imports: [
     BrowserModule
