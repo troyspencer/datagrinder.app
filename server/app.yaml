@@ -1,5 +1,5 @@
-env: flex
 runtime: go
+api_version: go1
 handlers:
 - url: /(.*\.(css|gif|png|jpg|ico|js|html))
   static_files: static/\1
