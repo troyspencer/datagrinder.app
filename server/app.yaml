@@ -1,0 +1,10 @@
+env: flex
+runtime: go
+handlers:
+- url: /(.*\.(css|gif|png|jpg|ico|js|html))
+  static_files: static/\1
+  upload: static/(.*\.(css|gif|png|jpg|ico|js|html))
+- url: /.*
+  script: _go_app
+env_variables:
+  CLIENT_ID: '[CLIENT_ID]'
