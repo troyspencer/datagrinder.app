@@ -1,9 +1,15 @@
 runtime: go
 api_version: go1
 handlers:
-- url: /(.*\.(css|gif|png|jpg|ico|js|html))
-  static_files: static/\1
-  upload: static/(.*\.(css|gif|png|jpg|ico|js|html))
+# If the path is empty, show static index.html file
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+
+# Otherwise, find file in static directory
+- url: /static
+  static_dir: static
+
 - url: /.*
   script: _go_app
 env_variables:
