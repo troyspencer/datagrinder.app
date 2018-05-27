@@ -31,6 +31,7 @@ func main() {
 	clientID = os.Getenv("CLIENT_ID")
 	// Register routes
 	http.HandleFunc("/greet", greet)
+	http.HandleFunc("/draw", drawFromInput)
 	http.HandleFunc("/", indexHandler)
 
 	// Start HTTP server
