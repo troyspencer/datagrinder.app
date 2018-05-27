@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {GrindDrawService} from '../grind-draw.service';
@@ -11,7 +11,6 @@ import {GrinderResultsComponent} from '../grinder-results/grinder-results.compon
   styleUrls: ['./draw-form.component.css']
 })
 export class DrawFormComponent implements OnInit {
-
   image_base64 = '';
   setting = 1;
   width = 640;
@@ -24,14 +23,20 @@ export class DrawFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  displayDrawing() {
+
+  displayDrawing(base64url: string) {
+    this.image_base64 = base64url;
+    alert(this.image_base64);
+  }
+
+  askForDrawing() {
     const dg = {
       setting: this.setting,
       width: this.width,
       height: this.height,
     };
 
-    this.drawer.getDrawing(dg).subscribe(drawing => this.image_base64 = drawing);
+    this.drawer.getDrawing(dg).subscribe(drawing => this.displayDrawing(drawing['base64url']));
   }
 
 }

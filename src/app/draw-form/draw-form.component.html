@@ -29,5 +29,11 @@
 <button 
   mat-raised-button 
   color="primary"
-  (click)="displayDrawing()">Grind</button>
-<app-grinder-results [image_base64]="image_base64"></app-grinder-results>
+  (click)="askForDrawing()">
+  Grind
+</button>
+<img src="data:image/jpeg;base64,{{image_base64}}" crossorigin="anonymous">
+<!--<app-grinder-results 
+  [image_base64]="image_base64">
+</app-grinder-results>-->
+

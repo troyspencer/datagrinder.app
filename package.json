@@ -8,7 +8,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "cd server && bash dev.sh",
-    "build": "ng build --prod",
+    "build": "ng build --prod --deploy-url /static/",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/app.yaml"
   },
   "private": true,

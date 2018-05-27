@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"image"
 	"image/color"
 	"image/draw"
@@ -52,6 +51,11 @@ func DrawFromInput(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// Base64ImageResponse defines the response
+type Base64ImageResponse struct {
+	Base64url string `json:"base64url"`
+}
+
 func base64Image(w http.ResponseWriter, img *image.Image) {
 	// create a new buffer base on file size
 
@@ -76,9 +80,19 @@ func base64Image(w http.ResponseWriter, img *image.Image) {
 	imgBase64Str := base64.StdEncoding.EncodeToString(buffer.Bytes())
 
 	// Embed into an html without PNG file
-	img2html := "<html><body><img src=\"data:image/png;base64," + imgBase64Str + "\" /></body></html>"
+	//img2html := "<html><body><img src=\"data:image/png;base64," + imgBase64Str + "\" /></body></html>"
 
-	w.Write([]byte(fmt.Sprintf(img2html)))
+	img2html := imgBase64Str
+
+	drawing := Base64ImageResponse{Base64url: img2html}
+
+	//drawing := map[string]string{"base64url": img2html}
+
+	log.Println(drawing)
+	//fmt.Fprintf(w, drawing)
+	json.NewEncoder(w).Encode(drawing)
+
+	//w.Write([]byte(fmt.Sprintf(img2html)))
 }
 
 func writeImage(w http.ResponseWriter, img *image.Image) {
