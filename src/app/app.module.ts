@@ -3,17 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GearsComponent } from './gears/gears.component';
-import {MatCardModule, MatButtonModule} from '@angular/material';
+import {MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { DrawFormComponent } from './draw-form/draw-form.component';
+import { HttpClientModule} from '@angular/common/http';
+import { GrinderResultsComponent } from './grinder-results/grinder-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GearsComponent
+    GearsComponent,
+    DrawFormComponent,
+    GrinderResultsComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

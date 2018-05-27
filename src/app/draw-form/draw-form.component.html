@@ -1,0 +1,9 @@
+<form class="draw-form">
+  <mat-form-field>
+    <input matInput placeholder="Width" value="200" formControl="emailFormControl" errorStateMatcher="matcher">
+  </mat-form-field>
+  <mat-form-field>
+    <button mat-raised-button color="primary">Grind</button>
+  </mat-form-field>
+</form>
+<app-grinder-results [image_base64]="image_base64"></app-grinder-results>
