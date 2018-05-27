@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GearsComponent } from './gears/gears.component';
+import {MatCardModule, MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { GearsComponent } from './gears/gears.component';
     GearsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
