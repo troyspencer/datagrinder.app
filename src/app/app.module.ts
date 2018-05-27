@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GearsComponent } from './gears/gears.component';
-import {MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSliderModule
+} from '@angular/material';
 import { DrawFormComponent } from './draw-form/draw-form.component';
 import { HttpClientModule} from '@angular/common/http';
 import { GrinderResultsComponent } from './grinder-results/grinder-results.component';
@@ -21,7 +27,8 @@ import { GrinderResultsComponent } from './grinder-results/grinder-results.compo
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

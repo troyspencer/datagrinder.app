@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"image"
 	"image/color"
@@ -13,13 +14,42 @@ import (
 	"strconv"
 )
 
-func drawFromInput(w http.ResponseWriter, r *http.Request) {
+type drawGrind struct {
+	setting int
+	width   int
+	height  int
+}
 
-	m := image.NewRGBA(image.Rect(0, 0, 640, 480))
-	blue := color.RGBA{0, 0, 255, 255}
-	draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
-	var img image.Image = m
-	base64Image(w, &img)
+// DrawFromInput receives a setting, width, and height, and writes a
+// base64 encoded image in response
+func DrawFromInput(w http.ResponseWriter, r *http.Request) {
+
+	switch r.Method {
+	case "GET":
+		// Serve the resource.
+	case "POST":
+		decoder := json.NewDecoder(r.Body)
+		var dg drawGrind
+		err := decoder.Decode(&dg)
+		if err != nil {
+			panic(err)
+		}
+		defer r.Body.Close()
+
+		m := image.NewRGBA(image.Rect(0, 0, dg.width, dg.height))
+
+		blue := color.RGBA{0, 0, uint8(255 * dg.setting / 5), uint8(255 * dg.setting / 5)}
+		draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
+		var img image.Image = m
+		base64Image(w, &img)
+	case "PUT":
+		// Update an existing record.
+	case "DELETE":
+		// Remove the record.
+	default:
+		// Give an error message.
+	}
+
 }
 
 func base64Image(w http.ResponseWriter, img *image.Image) {

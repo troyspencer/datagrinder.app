@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GrindDrawService {
 
   private url = 'draw';
@@ -13,7 +14,13 @@ export class GrindDrawService {
     private http: HttpClient
   ) { }
 
-  getDrawing(): Observable<any> {
-    return this.http.get(this.url);
+  getDrawing(dg: DrawGrind): Observable<any> {
+    return this.http.post(this.url, dg);
   }
+}
+
+export interface DrawGrind {
+  setting: number;
+  height: number;
+  width: number;
 }

@@ -1,9 +1,33 @@
-<form class="draw-form">
-  <mat-form-field>
-    <input matInput placeholder="Width" value="200" formControl="emailFormControl" errorStateMatcher="matcher">
-  </mat-form-field>
-  <mat-form-field>
-    <button mat-raised-button color="primary">Grind</button>
-  </mat-form-field>
-</form>
+<span class="text-small">1</span>
+<mat-slider #heightslider
+  [min]="1" [max]="1080"
+  [step]="1"
+  [value]="1"
+  (NgModel)="height=heightslider.value">
+</mat-slider>
+<span class="text-small">1080</span>
+<br>
+<span class="text-small">1</span>
+<mat-slider #widthslider
+  [min]="1" [max]="1920"
+  [step]="1"
+  [value]="1"
+  (NgModel)="width=widthslider.value">
+</mat-slider>
+<span class="text-small">1920</span>
+<br>
+<span class="text-small">Rough</span>
+<mat-slider #settingslider
+  [min]="1" [max]="5"
+  [step]="1"
+  [tickInterval]="1"
+  [value]="1"
+  (NgModel)="setting=settingslider.value">
+</mat-slider>
+<span class="text-small">Very Fine</span>
+<br>
+<button 
+  mat-raised-button 
+  color="primary"
+  (click)="displayDrawing()">Grind</button>
 <app-grinder-results [image_base64]="image_base64"></app-grinder-results>
