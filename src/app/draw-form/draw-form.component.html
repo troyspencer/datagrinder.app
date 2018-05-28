@@ -1,32 +1,52 @@
-<h2>Height</h2>
-<mat-slider #heightslider
-  [min]="1" [max]="1000"
-  [step]="1"
-  [(ngModel)]="height">
-</mat-slider>
-<h2>Width</h2>
-<mat-slider #widthslider
-  [min]="1" [max]="1000"
-  [step]="1"
-  [(ngModel)]="width">
-</mat-slider>
-<h2>Setting</h2>
-<span class="text-small">Rough</span>
-<mat-slider #settingslider
-  [min]="1" [max]="5"
-  [step]="1"
-  [tickInterval]="1"
-  [(ngModel)]="setting">
-</mat-slider>
-<span class="text-small">Very Fine</span>
-<br>
-<button 
-  mat-raised-button 
-  color="primary"
-  (click)="askForDrawing()">
-  Grind
-</button>
-<p></p>
-<div *ngIf="image">
-  <img [src]="image">
-</div>
+<mat-card>
+  
+    <div class="clearfix">
+
+      <div style="float: left; text-align:center">
+          <div style="center: top">Height</div> 
+        <mat-slider
+          [min]="1" [max]="1000"
+          [step]="1"
+          [(ngModel)]="height">
+        </mat-slider>
+      </div>  
+
+  
+    <div style="float: left; text-align:center">
+      <div style="float: center">Width</div> 
+      <mat-slider
+        [min]="1" [max]="1000"
+        [step]="1"
+        [(ngModel)]="width">
+      </mat-slider>
+    </div>
+  
+    <div style="float: left; text-align:center; padding-left: 40px; padding-right: 40px" >
+      <div style="float: center">Setting</div> 
+      <span style="float: top" class="text-small">Rough</span>
+      
+      <mat-slider
+        [min]="1" [max]="5"
+        [step]="1"
+        [tickInterval]="1"
+        [(ngModel)]="setting">
+      </mat-slider>
+      <span style="float: top" class="text-small">Very Fine</span>
+    </div>
+      
+    <div style="float: left; text-align:center" >
+        <button 
+        mat-raised-button 
+        color="primary"
+        (click)="askForDrawing()">
+        Grind
+      </button>
+    </div>
+    
+    </div>
+  
+    <div *ngIf="image">
+        <img [src]="image">
+      </div>
+
+</mat-card>
