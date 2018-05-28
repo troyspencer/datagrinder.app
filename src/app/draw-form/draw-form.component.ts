@@ -4,6 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {GrindDrawService} from '../grind-draw.service';
 import {DrawGrind} from '../grind-draw.service';
 import {GrinderResultsComponent} from '../grinder-results/grinder-results.component';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-draw-form',
@@ -11,12 +12,14 @@ import {GrinderResultsComponent} from '../grinder-results/grinder-results.compon
   styleUrls: ['./draw-form.component.css']
 })
 export class DrawFormComponent implements OnInit {
-  image_base64 = '';
-  setting = 1;
-  width = 640;
-  height = 480;
+  image: SafeUrl;
+
+  setting = 3;
+  width = 500;
+  height = 500;
 
   constructor(
+
     private drawer: GrindDrawService
   ) { }
 
@@ -24,19 +27,19 @@ export class DrawFormComponent implements OnInit {
   }
 
 
-  displayDrawing(base64url: string) {
-    this.image_base64 = base64url;
-    alert(this.image_base64);
+  displayDrawing(drawingUrl: SafeUrl) {
+    this.image = drawingUrl;
+    console.log(drawingUrl);
   }
 
   askForDrawing() {
     const dg = {
       setting: this.setting,
-      width: this.width,
       height: this.height,
+      width: this.width,
     };
 
-    this.drawer.getDrawing(dg).subscribe(drawing => this.displayDrawing(drawing['base64url']));
+    this.drawer.getBase64(dg).subscribe(drawingUrl => this.displayDrawing(drawingUrl));
   }
 
 }

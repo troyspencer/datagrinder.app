@@ -1,28 +1,22 @@
-<span class="text-small">1</span>
+<h2>Height</h2>
 <mat-slider #heightslider
-  [min]="1" [max]="1080"
+  [min]="1" [max]="1000"
   [step]="1"
-  [value]="1"
-  (NgModel)="height=heightslider.value">
+  [(ngModel)]="height">
 </mat-slider>
-<span class="text-small">1080</span>
-<br>
-<span class="text-small">1</span>
+<h2>Width</h2>
 <mat-slider #widthslider
-  [min]="1" [max]="1920"
+  [min]="1" [max]="1000"
   [step]="1"
-  [value]="1"
-  (NgModel)="width=widthslider.value">
+  [(ngModel)]="width">
 </mat-slider>
-<span class="text-small">1920</span>
-<br>
+<h2>Setting</h2>
 <span class="text-small">Rough</span>
 <mat-slider #settingslider
   [min]="1" [max]="5"
   [step]="1"
   [tickInterval]="1"
-  [value]="1"
-  (NgModel)="setting=settingslider.value">
+  [(ngModel)]="setting">
 </mat-slider>
 <span class="text-small">Very Fine</span>
 <br>
@@ -32,8 +26,7 @@
   (click)="askForDrawing()">
   Grind
 </button>
-<img src="data:image/jpeg;base64,{{image_base64}}" crossorigin="anonymous">
-<!--<app-grinder-results 
-  [image_base64]="image_base64">
-</app-grinder-results>-->
-
+<p></p>
+<div *ngIf="image">
+  <img [src]="image">
+</div>

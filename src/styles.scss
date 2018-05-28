@@ -8,7 +8,7 @@
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
 $primary: mat-palette($mat-grey);
-$accent: mat-palette($mat-light-blue);
+$accent: mat-palette($mat-grey);
 $warn: mat-palette($mat-deep-orange);
 
 

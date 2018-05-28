@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GearsComponent } from './gears/gears.component';
@@ -23,6 +24,7 @@ import { GrinderResultsComponent } from './grinder-results/grinder-results.compo
   ],
   imports: [
     HttpClientModule,
+    FormsModule,
     BrowserModule,
     MatCardModule,
     MatButtonModule,
