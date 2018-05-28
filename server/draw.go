@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"bytes"
@@ -10,13 +10,8 @@ import (
 	"image/jpeg"
 	"log"
 	"net/http"
+	pb "troy/gcloud/grpc_playground/server/datagrinder"
 )
-
-type DrawGrind struct {
-	Setting int `json:"setting"`
-	Width   int `json:"width"`
-	Height  int `json:"height"`
-}
 
 // DrawFromInput receives a setting, width, and height, and writes a
 // base64 encoded image in response
@@ -27,7 +22,7 @@ func DrawFromInput(w http.ResponseWriter, r *http.Request) {
 		// Serve the resource.
 	case "POST":
 
-		var dg DrawGrind
+		/* var dg DrawGrind
 
 		decoder := json.NewDecoder(r.Body)
 		err := decoder.Decode(&dg)
@@ -38,7 +33,7 @@ func DrawFromInput(w http.ResponseWriter, r *http.Request) {
 		}
 		defer r.Body.Close()
 		drawing := Draw(dg)
-		base64Image(w, &drawing)
+		base64Image(w, &drawing) */
 
 	case "PUT":
 		// Update an existing record.
@@ -51,10 +46,10 @@ func DrawFromInput(w http.ResponseWriter, r *http.Request) {
 }
 
 // Draw takes a drawGrind object and converts it into an image.Image
-func Draw(dg DrawGrind) image.Image {
-	m := image.NewRGBA(image.Rect(0, 0, dg.Width, dg.Height))
+func Draw(g pb.GrinderInput) image.Image {
+	m := image.NewRGBA(image.Rect(0, 0, int(g.Width), int(g.Height)))
 
-	blue := color.RGBA{uint8(255 * dg.Setting / 5), uint8(255 * dg.Setting / 5), uint8(255 * dg.Setting / 5), 255}
+	blue := color.RGBA{uint8(255 * int(g.Setting) / 5), uint8(255 * int(g.Setting) / 5), uint8(255 * int(g.Setting) / 5), 255}
 	draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
 	return image.Image(m)
 }
@@ -64,8 +59,7 @@ type Base64ImageResponse struct {
 	Base64url string `json:"base64url"`
 }
 
-func base64Image(w http.ResponseWriter, img *image.Image) {
-
+func convertImageToBase64(img *image.Image) string {
 	buffer := new(bytes.Buffer)
 	if err := jpeg.Encode(buffer, *img, nil); err != nil {
 		log.Println("unable to encode image.")
@@ -74,7 +68,10 @@ func base64Image(w http.ResponseWriter, img *image.Image) {
 	imgBase64Str := base64.StdEncoding.EncodeToString(buffer.Bytes())
 
 	img2html := "data:image/jpeg;base64," + imgBase64Str
+	return img2html
+}
 
-	drawing := Base64ImageResponse{Base64url: img2html}
+func base64Image(w http.ResponseWriter, img *image.Image) {
+	drawing := Base64ImageResponse{Base64url: convertImageToBase64(img)}
 	json.NewEncoder(w).Encode(drawing)
 }

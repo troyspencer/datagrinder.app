@@ -1,0 +1,8 @@
+service: game-hosting
+runtime: go
+api_version: go1
+
+handlers:
+- url: /game/launch\.exe
+  static_files: game/launch.exe 
+  upload: game/launch\.exe
