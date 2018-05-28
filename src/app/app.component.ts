@@ -7,4 +7,8 @@ import {GearsComponent} from './gears/gears.component';
 })
 export class AppComponent {
   title = 'DataGrinder';
+
+  clickedTitle () {
+    location.href = 'http://scp-wiki.net/scp-914';
+  }
 }

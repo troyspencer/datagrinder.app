@@ -1,7 +1,10 @@
 
 <div style="text-align:center">
   <h1>
-    {{ title }}
+    <button mat-button
+      style="font-size:1.2em; display: inline-block;"
+      (click)="clickedTitle()"
+    >{{ title }}</button>
   </h1>
 </div>
 <app-draw-form></app-draw-form>
