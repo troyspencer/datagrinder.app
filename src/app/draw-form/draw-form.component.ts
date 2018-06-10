@@ -5,6 +5,8 @@ import {GrindDrawService} from '../grind-draw.service';
 import {DrawGrind} from '../grind-draw.service';
 import {GrinderResultsComponent} from '../grinder-results/grinder-results.component';
 import { SafeUrl } from '@angular/platform-browser';
+import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
+
 
 @Component({
   selector: 'app-draw-form',
@@ -19,13 +21,21 @@ export class DrawFormComponent implements OnInit {
   height = 500;
 
   constructor(
-
     private drawer: GrindDrawService
   ) { }
 
   ngOnInit() {
+    
   }
 
+
+  grpcDrawing() {
+    const grinderInput = new GrinderInput();
+    grinderInput.setSetting(this.setting);
+    grinderInput.setHeight(this.height);
+    grinderInput.setWidth(this.width);
+    this.drawer.getGrinderOutput(grinderInput).subscribe(grinderOutput => this.displayDrawing(grinderOutput['base64image']));
+  }
 
   displayDrawing(drawingUrl: SafeUrl) {
     this.image = drawingUrl;

@@ -3,15 +3,18 @@ package server
 import (
 	"fmt"
 	"gcloud/grpc_playground/server/datagrinder"
-	"log"
 	"net"
 	"net/http"
 	"os"
+	"strings"
 
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/k2wanko/gaegrpc"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 )
 
 var (
@@ -33,14 +36,18 @@ func greet(w http.ResponseWriter, r *http.Request) {
 }
 
 func Run() {
+	grpcRun()
+}
+
+func OldRun() {
 	// Read configuration environment variables
 	clientID = os.Getenv("CLIENT_ID")
 
-	mux = http.NewServeMux()
+	//mux = http.NewServeMux()
 
 	// Register routes
-	mux.HandleFunc("/greet", greet)
-	mux.HandleFunc("/draw", DrawFromInput)
+	//mux.HandleFunc("/greet", greet)
+	//mux.HandleFunc("/draw", DrawFromInput)
 	//mux.HandleFunc("/", indexHandler)
 
 	s := grpc.NewServer()
@@ -69,9 +76,24 @@ func NewRun() {
 
 }
 
-const (
-	port = ":50050"
-)
+func grpcRun() {
+	sv := gaegrpc.NewServer()
+	//echo.RegisterEchoServiceServer(sv, &EchoService{})
+	datagrinder.RegisterGrinderServer(sv, &server{})
+
+	wh := gaegrpc.NewWrapHandler(grpcweb.WrapServer(sv))
+	http.HandleFunc("/", createAppHandler(wh))
+}
+
+func createAppHandler(h http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasPrefix(r.Header.Get("Content-Type"), "application/grpc-web") {
+			h.ServeHTTP(w, r)
+		} else {
+			//serverTop(w, r)
+		}
+	}
+}
 
 type server struct{}
 
@@ -79,5 +101,6 @@ type server struct{}
 func (s *server) Grind(ctx context.Context, in *datagrinder.GrinderInput) (*datagrinder.GrinderOutput, error) {
 	drawing := Draw(*in)
 	base64 := convertImageToBase64(&drawing)
+	log.Infof(ctx, "%s", base64)
 	return &datagrinder.GrinderOutput{Base64Image: base64}, nil
 }
