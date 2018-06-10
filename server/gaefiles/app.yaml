@@ -18,5 +18,3 @@ handlers:
 # All else is handled by Go App
 - url: /.*
   script: _go_app
-env_variables:
-  CLIENT_ID: '[CLIENT_ID]'
