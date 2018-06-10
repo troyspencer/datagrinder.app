@@ -7,7 +7,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "cd server && bash dev.sh",
+    "dev": "cd server && dev.bat",
     "build": "ng build --prod --deploy-url /static/",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/app.yaml"
   },

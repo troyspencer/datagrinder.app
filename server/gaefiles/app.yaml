@@ -1,5 +1,6 @@
 runtime: go
 api_version: go1
+
 handlers:
 # If the path is empty, show static index.html file
 - url: /
@@ -7,9 +8,9 @@ handlers:
   upload: ../static/index.html
 
 # Serve favicon.ico on expected path
-- url: /favicon\.ico
+- url: /favicon.ico
   static_files: ../static/favicon.ico
-  upload: ../static/favicon\.ico
+  upload: ../static/favicon.ico
 
 # Otherwise, find file in static directory
 - url: /static
