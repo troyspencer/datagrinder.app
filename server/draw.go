@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	pb "gcloud/grpc_playground/server/datagrinder"
 	"image"
 	"image/color"
 	"image/draw"
 	"image/jpeg"
 	"log"
 	"net/http"
-	pb "troy/gcloud/grpc_playground/server/datagrinder"
 )
 
 // DrawFromInput receives a setting, width, and height, and writes a

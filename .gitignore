@@ -7,6 +7,10 @@
 /server/static/
 /server/debug.test
 /server/debug
+/server/datagrinder/*.pb.go
+
+# protobuf generated files
+/src/app/protobuf
 
 # dependencies
 /node_modules
@@ -40,3 +44,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
