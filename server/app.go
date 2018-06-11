@@ -20,7 +20,7 @@ func Run() {
 	// Wrap server with grpcweb
 	wrappedGrpcServer := grpcweb.WrapServer(grpcServer)
 
-	// Switch between grpc and other options
+	// Choose between grpc and other options
 	appHandler := createAppHandler(wrappedGrpcServer)
 
 	// Set the default http handler function to use our custom handler
@@ -33,7 +33,7 @@ func Run() {
 func createAppHandler(wrappedGrpcServer *grpcweb.WrappedGrpcServer) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if wrappedGrpcServer.IsGrpcWebRequest(r) {
-			wrappedGrpcServer.ServeHTTP(w, r)
+			gaegrpc.NewWrapHandler(wrappedGrpcServer).ServeHTTP(w, r)
 		} else {
 			indexHandler(w, r)
 		}
