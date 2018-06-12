@@ -4,7 +4,7 @@
 /dist
 /tmp
 /out-tsc
-/server/gaefiles/static/
+/server/gaefiles/datagrinder/static/
 /server/debug.test
 /server/debug
 /server/datagrinder/*.pb.go
