@@ -14,13 +14,15 @@ import {
 import { DrawFormComponent } from './draw-form/draw-form.component';
 import { HttpClientModule} from '@angular/common/http';
 import { GrinderResultsComponent } from './grinder-results/grinder-results.component';
+import { GameHostingComponent } from './game-hosting/game-hosting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GearsComponent,
     DrawFormComponent,
-    GrinderResultsComponent
+    GrinderResultsComponent,
+    GameHostingComponent
   ],
   imports: [
     HttpClientModule,
