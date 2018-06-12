@@ -1,4 +1,3 @@
-service: datagrinder
 runtime: go
 api_version: go1
 
@@ -9,9 +8,9 @@ handlers:
   upload: static/index.html
 
 # Serve favicon.ico on expected path
-- url: /favicon.ico
+- url: /favicon\.ico
   static_files: static/favicon.ico
-  upload: static/favicon.ico
+  upload: static/favicon\.ico
 
 # Otherwise, find file in static directory
 - url: /static
