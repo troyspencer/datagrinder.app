@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {GrindDrawService} from '../grind-draw.service';
-import {DrawGrind} from '../grind-draw.service';
 import {GrinderResultsComponent} from '../grinder-results/grinder-results.component';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
@@ -25,7 +24,6 @@ export class DrawFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
   }
 
 
@@ -40,16 +38,6 @@ export class DrawFormComponent implements OnInit {
   displayDrawing(drawingUrl: SafeUrl) {
     this.image = drawingUrl;
     console.log(drawingUrl);
-  }
-
-  askForDrawing() {
-    const dg = {
-      setting: this.setting,
-      height: this.height,
-      width: this.width,
-    };
-
-    this.drawer.getBase64(dg).subscribe(drawingUrl => this.displayDrawing(drawingUrl));
   }
 
 }
