@@ -7,7 +7,7 @@
 
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
-$primary: mat-palette($mat-grey);
+$primary: mat-palette($mat-gray, A700, A400, A500);
 $accent: mat-palette($mat-grey);
 $warn: mat-palette($mat-deep-orange);
 
@@ -26,5 +26,5 @@ $theme: mat-dark-theme(
 body {
     font-family: 'Roboto', sans-serif;
     color: rgb(191, 191, 191);
-    background-color: #252525;
+
 }

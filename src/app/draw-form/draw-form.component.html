@@ -1,49 +1,67 @@
 <mat-card>
-  
-    <div class="clearfix">
+    <div fxLayout="row wrap" fxLayoutGap="10px">
+      <div fxFlex>
+        <div fxLayout="column" style="text-align: center">
+            <div fxFlex >
+                Height
+            </div>
+          <div fxFlex>
+              <mat-slider
+              [min]="1" [max]="500"
+              [step]="1"
+              [(ngModel)]="height"
+              [thumbLabel]="true">
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div fxFlex>
+          <div fxLayout="column" style="text-align: center">
+              <div fxFlex >
+                  Width
+              </div>
+            <div fxFlex>
+              <mat-slider
+                [min]="1" [max]="500"
+                [step]="1"
+                [(ngModel)]="width"
+                [thumbLabel]="true">
+              </mat-slider>
+            </div>
+          </div>
+        </div>
+        <div fxFlex>
+            <div fxLayout="column" style="text-align: center">
+                <div fxFlex >
+                    Setting
+                </div>
+              <div fxFlex>
+                <div fxLayout="row">
+                  <div fxFlex>Rough</div>
+                  <div fxFlex>
+                      <mat-slider
+                      [min]="1" [max]="5"
+                      [step]="1"
+                      [tickInterval]="1"
+                      [(ngModel)]="setting">
+                    </mat-slider>
+                  </div>
+                  <div fxFlex>Very Fine</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span fxFlex></span>
+          <div fxFlex>
+            <button 
+              mat-raised-button 
+              color="primary"
+              (click)="grpcDrawing()">
+              Grind
+            </button></div>
+    </div>
 
-      <div style="float: left; text-align:center">
-          <div style="float: top">Height</div> 
-        <mat-slider
-          [min]="1" [max]="1000"
-          [step]="1"
-          [(ngModel)]="height">
-        </mat-slider>
-      </div>  
-
-  
-    <div style="float: left; text-align:center">
-      <div style="float: center">Width</div> 
-      <mat-slider
-        [min]="1" [max]="1000"
-        [step]="1"
-        [(ngModel)]="width">
-      </mat-slider>
-    </div>
-  
-    <div style="float: left; text-align:center; padding-left: 40px; padding-right: 40px" >
-      <div style="float: center">Setting</div> 
-      <span style="float: top" class="text-small">Rough</span>
-      
-      <mat-slider
-        [min]="1" [max]="5"
-        [step]="1"
-        [tickInterval]="1"
-        [(ngModel)]="setting">
-      </mat-slider>
-      <span style="float: top" class="text-small">Very Fine</span>
-    </div>
-      
-    <div style="float: left; text-align:center" >
-        <button 
-        mat-raised-button 
-        color="primary"
-        (click)="grpcDrawing()">
-        Grind
-      </button>
-    </div>
-    
-    </div>
   
     <div *ngIf="image">
         <img [src]="image">

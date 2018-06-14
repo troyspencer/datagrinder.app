@@ -16,8 +16,8 @@ export class DrawFormComponent implements OnInit {
   image: SafeUrl;
 
   setting = 3;
-  width = 500;
-  height = 500;
+  width = 250;
+  height = 250;
 
   constructor(
     private drawer: GrindDrawService
