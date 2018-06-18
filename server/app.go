@@ -3,7 +3,6 @@ package server
 import (
 	"gcloud/grpc_playground/server/api"
 	"gcloud/grpc_playground/server/datagrinder"
-	"log"
 	"net/http"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -59,15 +58,11 @@ func DebugRun() {
 
 func createAppHandler(wrappedGrpcServer *grpcweb.WrappedGrpcServer, debug bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if wrappedGrpcServer.IsGrpcWebRequest(r) {
-			if !debug {
-				gaegrpc.NewWrapHandler(wrappedGrpcServer).ServeHTTP(w, r)
-			} else {
-				log.Println("Serving Debug")
-				wrappedGrpcServer.ServeHTTP(w, r)
-			}
+		if debug {
+			wrappedGrpcServer.ServeHTTP(w, r)
+		} else if wrappedGrpcServer.IsGrpcWebRequest(r) {
+			gaegrpc.NewWrapHandler(wrappedGrpcServer).ServeHTTP(w, r)
 		} else {
-			log.Println("Serving Redirect")
 			indexHandler(w, r)
 		}
 	}
