@@ -1,70 +1,73 @@
 <mat-card>
-    <div fxLayout="row wrap" fxLayoutGap="10px">
-      <div fxFlex>
-        <div fxLayout="column" style="text-align: center">
-            <div fxFlex >
-                Height
-            </div>
-          <div fxFlex>
-              <mat-slider
-              [min]="1" [max]="500"
-              [step]="1"
-              [(ngModel)]="height"
-              [thumbLabel]="true">
-            </mat-slider>
-          </div>
-        </div>
-      </div>
-      <mat-divider [vertical]="true"></mat-divider>
-      <div fxFlex>
-          <div fxLayout="column" style="text-align: center">
-              <div fxFlex >
-                  Width
-              </div>
-            <div fxFlex>
-              <mat-slider
-                [min]="1" [max]="500"
-                [step]="1"
-                [(ngModel)]="width"
-                [thumbLabel]="true">
-              </mat-slider>
-            </div>
-          </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex>
+      <div fxLayout="column" style="text-align: center">
+        <div fxFlex >
+            Height
         </div>
         <div fxFlex>
-            <div fxLayout="column" style="text-align: center">
-                <div fxFlex >
-                    Setting
-                </div>
-              <div fxFlex>
-                <div fxLayout="row">
-                  <div fxFlex>Rough</div>
-                  <div fxFlex>
-                      <mat-slider
-                      [min]="1" [max]="5"
-                      [step]="1"
-                      [tickInterval]="1"
-                      [(ngModel)]="setting">
-                    </mat-slider>
-                  </div>
-                  <div fxFlex>Very Fine</div>
-                </div>
-              </div>
+            <mat-slider
+            [min]="1" [max]="500"
+            [step]="1"
+            [(ngModel)]="height"
+            [thumbLabel]="true">
+          </mat-slider>
+        </div>
+      </div>
+    </div>
+    <div fxFlex>
+      <div fxLayout="column" style="text-align: center">
+        <div fxFlex >
+          Width
+        </div>
+        <div fxFlex>
+          <mat-slider
+            [min]="1" [max]="500"
+            [step]="1"
+            [(ngModel)]="width"
+            [thumbLabel]="true">
+          </mat-slider>
+        </div>
+      </div>
+    </div>
+    <div fxFlex>
+      <div fxLayout="column" style="text-align: center">
+        <div fxFlex >
+            Setting
+        </div>
+        <div fxFlex>
+          <div fxLayout="row">
+            <div fxFlex>
+              Rough
+            </div>
+            <div fxFlex>
+              <mat-slider
+                [min]="1" [max]="5"
+                [step]="1"
+                [tickInterval]="1"
+                [(ngModel)]="setting">
+              </mat-slider>
+            </div>
+            <div fxFlex>
+              Very Fine
             </div>
           </div>
-          <span fxFlex></span>
-          <div fxFlex>
-            <button 
-              mat-raised-button 
-              color="primary"
-              (click)="grpcDrawing()">
-              Grind
-            </button></div>
-    </div>
-
-  
-    <div *ngIf="image">
-        <img [src]="image">
+        </div>
       </div>
+    </div>
+    <span fxFlex></span>
+    <div fxFlex>
+      <button 
+        mat-raised-button 
+        color="primary"
+        (click)="grpcDrawing()">
+        Grind
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="image">
+    <img [src]="image">
+  </div>
 
 </mat-card>
