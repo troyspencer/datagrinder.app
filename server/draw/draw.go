@@ -17,7 +17,7 @@ import (
 func Draw(g pb.GrinderInput) image.Image {
 	m := image.NewRGBA(image.Rect(0, 0, int(g.Width), int(g.Height)))
 
-	blue := color.RGBA{uint8(255 * int(g.Setting) / 5), uint8(255 * int(g.Setting) / 5), uint8(255 * int(g.Setting) / 5), 255}
+	blue := color.RGBA{uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), 255}
 	draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
 	return image.Image(m)
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
-import {GrinderResultsComponent} from '../grinder-results/grinder-results.component';
+import {MediaMatcher} from '@angular/cdk/layout';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
 
@@ -12,18 +10,28 @@ import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
   templateUrl: './draw-form.component.html',
   styleUrls: ['./draw-form.component.css']
 })
-export class DrawFormComponent implements OnInit {
+export class DrawFormComponent implements OnDestroy {
   image: SafeUrl;
 
   setting = 3;
   width = 500;
   height = 500;
 
-  constructor(
-    private drawer: GrindDrawService
-  ) { }
+  mobileQuery: MediaQueryList;
 
-  ngOnInit() {
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    private drawer: GrindDrawService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
+  ){
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   grpcDrawing() {
@@ -36,7 +44,6 @@ export class DrawFormComponent implements OnInit {
 
   displayDrawing(drawingUrl: SafeUrl) {
     this.image = drawingUrl;
-    console.log(drawingUrl);
   }
 
 }
