@@ -1,5 +1,5 @@
-<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="10px">
-  <div fxFlex="20">
+<div fxLayout.lt-md="column" fxLayout="row">
+  <div fxFlex.lt-md fxFlex="0 0 20em">
     <mat-card>
       <mat-accordion>
         <mat-expansion-panel>
@@ -72,7 +72,7 @@
       </mat-accordion>
     </mat-card>
   </div>
-  <div fxFlex="80">
+  <div fxFlex>
     <mat-card *ngIf="image">
       <div style="display:flex; justify-content: center;">
         <div style="max-width: 100%; justify-content: center;">
