@@ -39,7 +39,7 @@ ngOnDestroy(): void {
     grinderInput.setSetting(this.setting);
     grinderInput.setHeight(this.height);
     grinderInput.setWidth(this.width);
-    this.drawer.getGrinderOutput(grinderInput).subscribe(grinderOutput => this.displayDrawing(grinderOutput['base64image']));
+    this.drawer.getGrinderOutput(grinderInput).subscribe(grinderOutput => this.displayDrawing(grinderOutput.getBase64image()));
   }
 
   displayDrawing(drawingUrl: SafeUrl) {

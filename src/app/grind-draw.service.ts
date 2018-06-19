@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import { Observable, from, observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { Grinder } from './protobuf/datagrinder/datagrinder_pb_service';
 import { GrinderInput, GrinderOutput} from './protobuf/datagrinder/datagrinder_pb';
 import { grpc } from 'grpc-web-client';
-import { Request } from 'grpc-web-client/dist/invoke';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -19,20 +16,22 @@ export class GrindDrawService {
     private _sanitizer: DomSanitizer
   ) { }
 
-  getGrinderOutput(grinderInput: GrinderInput): Observable<any>  {
-    const requestPromise = new Promise<any>((resolve, reject) => {
-      grpc.unary(Grinder.Grind, {
+  getGrinderOutput(grinderInput: GrinderInput): Observable<GrinderOutput>  {
+    return new Observable<GrinderOutput>((observer) => {
+      const rpcOptions = {
         request: grinderInput,
         host: environment.host,
         onEnd: res => {
-          const { status, statusMessage, headers, message, trailers } = res;
+          const { status, message } = res;
           if (status === grpc.Code.OK && message) {
-            resolve(message.toObject());
+            observer.next(message);
+            observer.complete();
           }
         }
-      });
+      };
+      const grpcRequest: grpc.Request = grpc.unary(Grinder.Grind, rpcOptions);
+      return {unsubscribe() { grpcRequest.close(); }};
     });
-    return from(requestPromise);
   }
 
   createUrlForBase64(base64: string): SafeUrl {
