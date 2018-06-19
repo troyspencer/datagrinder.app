@@ -16,8 +16,8 @@ export class DrawFormComponent implements OnInit {
   image: SafeUrl;
 
   setting = 3;
-  width = 250;
-  height = 250;
+  width = 500;
+  height = 500;
 
   constructor(
     private drawer: GrindDrawService
@@ -25,7 +25,6 @@ export class DrawFormComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
   grpcDrawing() {
     const grinderInput = new GrinderInput();
