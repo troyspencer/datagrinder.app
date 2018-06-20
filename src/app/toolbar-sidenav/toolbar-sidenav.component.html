@@ -1,22 +1,22 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <div fxFlex *ngIf="enableSidenav">
-          <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      </div>
-      <div fxFlex>
-        <a mat-button 
-        class="example-app-name"
-        style="font-size:1.2em;"
-        href="http://scp-wiki.net/scp-914">
-        DataGrinder
-        </a>
-      </div>
-      <span fxFlex></span>
-      <div fxFlex>
-          <app-game-hosting></app-game-hosting>
-      </div>
+    <div *ngIf="enableSidenav">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>
+          menu
+        </mat-icon>
+      </button>
     </div>
+    <div>
+      <a mat-button 
+      class="example-app-name"
+      style="font-size:1.2em;"
+      href="http://scp-wiki.net/scp-914">
+      DataGrinder
+      </a>
+    </div>
+    <span fxFlex></span>
+    <app-game-hosting></app-game-hosting>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
