@@ -1,5 +1,6 @@
-<a style="font-size: 0.7em; display: inline-block;" mat-button href="https://tinyurl.com/MONEYthegame">
+<button *ngIf="isWindows()" style="font-size: 0.7em; display: inline-block;" mat-button 
+    (click)="openDialog()">
     <mat-icon>
         attach_money
     </mat-icon>
-</a>
+</button>

@@ -15,7 +15,8 @@ import {
   MatSidenavModule,
   MatListModule,
   MatExpansionModule,
-  MatDividerModule
+  MatDividerModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -27,8 +28,12 @@ import { GameHostingComponent } from './game-hosting/game-hosting.component';
 import { ToolbarSidenavComponent } from './toolbar-sidenav/toolbar-sidenav.component';
 import { SidenavContentComponent } from './sidenav-content/sidenav-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-dialog.component';
 
 @NgModule({
+  entryComponents: [
+    GameHostingDialogComponent
+  ],
   declarations: [
     AppComponent,
     GearsComponent,
@@ -37,7 +42,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     GameHostingComponent,
     ToolbarSidenavComponent,
     SidenavContentComponent,
-    SidenavComponent
+    SidenavComponent,
+    GameHostingDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -55,7 +61,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatSidenavModule,
     MatListModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
