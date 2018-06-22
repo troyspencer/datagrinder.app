@@ -1,8 +1,9 @@
-import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, Input, OnInit, Inject } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
+import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
 
 
 @Component({
@@ -10,40 +11,25 @@ import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
   templateUrl: './draw-form.component.html',
   styleUrls: ['./draw-form.component.css']
 })
-export class DrawFormComponent implements OnDestroy {
-  image: SafeUrl;
+export class DrawFormComponent implements OnInit {
 
-  setting = 3;
-  width = 500;
-  height = 500;
-
-  mobileQuery: MediaQueryList;
-
-  private _mobileQueryListener: () => void;
+  grinderInputObject: GrinderInput.AsObject;
 
   constructor(
-    private drawer: GrindDrawService,
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
-  ){
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    @Inject(MAT_BOTTOM_SHEET_DATA) public grinderInput: GrinderInput,
+    private bottomSheetRef: MatBottomSheetRef<DrawFormComponent>
+  ) { }
+
+  ngOnInit() {
+    this.grinderInputObject = this.grinderInput.toObject();
   }
 
-  grpcDrawing() {
-    const grinderInput = new GrinderInput();
-    grinderInput.setSetting(this.setting);
-    grinderInput.setHeight(this.height);
-    grinderInput.setWidth(this.width);
-    this.drawer.getGrinderOutput(grinderInput).subscribe(grinderOutput => this.displayDrawing(grinderOutput.getBase64image()));
-  }
+  openLink(event: MouseEvent): void {
+    this.grinderInput.setSetting(this.grinderInputObject.setting);
+    this.grinderInput.setHeight(this.grinderInputObject.height);
+    this.grinderInput.setWidth(this.grinderInputObject.width);
 
-  displayDrawing(drawingUrl: SafeUrl) {
-    this.image = drawingUrl;
+    this.bottomSheetRef.dismiss(this.grinderInput);
+    event.preventDefault();
   }
-
 }

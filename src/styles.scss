@@ -8,7 +8,7 @@
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
 $primary: mat-palette($mat-gray, A700, A400, A500);
-$accent: mat-palette($mat-grey);
+$accent: mat-palette($mat-gray, 100, 100, 100);
 $warn: mat-palette($mat-deep-orange);
 
 
@@ -27,4 +27,26 @@ body {
     font-family: 'Roboto', sans-serif;
     color: rgb(191, 191, 191);
 
+}
+
+$icon-large-container-size: 4em;
+$icon-large-size: 2em;
+
+.mat-icon-button.large {
+  width: $icon-large-container-size;
+  height: $icon-large-container-size;
+  line-height: $icon-large-container-size;
+
+  .mat-icon, .mat-icon-button i {
+    line-height: $icon-large-size;
+  }
+
+  .mat-icon {
+    width: $icon-large-size;
+    height: $icon-large-size;
+  }
+
+  .material-icons {
+    font-size: $icon-large-size;
+  }
 }

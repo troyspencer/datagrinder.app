@@ -1,0 +1,26 @@
+
+<mat-card *ngIf="image">
+  <div style="display:flex; justify-content: center;">
+    <div style="max-width: 100%; justify-content: center;">
+      <img style="max-width:100%" [src]="image">
+    </div>
+  </div>
+</mat-card>
+
+
+<button
+  color="primary"
+  class="mat-elevation-5"
+  style="top: auto;
+  right: 40px;
+  bottom: 40px;
+  left: auto;
+  position: fixed;" 
+  (click)="openBottomSheet()"  
+  mat-fab 
+  matTooltip="GRIND">
+
+    <mat-icon >settings</mat-icon>
+            
+</button>
+

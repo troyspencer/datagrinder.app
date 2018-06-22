@@ -16,7 +16,10 @@ import {
   MatListModule,
   MatExpansionModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatBottomSheetModule,
+  MatTooltipModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -26,13 +29,15 @@ import { HttpClientModule} from '@angular/common/http';
 import { GrinderResultsComponent } from './grinder-results/grinder-results.component';
 import { GameHostingComponent } from './game-hosting/game-hosting.component';
 import { ToolbarSidenavComponent } from './toolbar-sidenav/toolbar-sidenav.component';
-import { SidenavContentComponent } from './sidenav-content/sidenav-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-dialog.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DrawComponent } from './draw/draw.component';
 
 @NgModule({
   entryComponents: [
-    GameHostingDialogComponent
+    GameHostingDialogComponent,
+    DrawFormComponent
   ],
   declarations: [
     AppComponent,
@@ -41,9 +46,9 @@ import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-d
     GrinderResultsComponent,
     GameHostingComponent,
     ToolbarSidenavComponent,
-    SidenavContentComponent,
     SidenavComponent,
-    GameHostingDialogComponent
+    GameHostingDialogComponent,
+    DrawComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -62,7 +67,11 @@ import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-d
     MatListModule,
     MatExpansionModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBottomSheetModule,
+    MatGridListModule,
+    MatTooltipModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

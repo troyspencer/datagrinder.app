@@ -1,84 +1,69 @@
-<div fxLayout.lt-md="column" fxLayout="row">
-  <div fxFlex.lt-md fxFlex="0 0 20em">
-    <mat-card>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                Height
-            </mat-panel-title>
-            <mat-panel-description>
-              Height of result (px)
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-slider
-            [min]="1" [max]="1000"
-            [step]="1"
-            [(ngModel)]="height"
-            [thumbLabel]="true">
-          </mat-slider>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Width
-            </mat-panel-title>
-            <mat-panel-description>
-              Width of result (px)
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-slider
-            [min]="1" [max]="1000"
-            [step]="1"
-            [(ngModel)]="width"
-            [thumbLabel]="true">
-          </mat-slider>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                Setting
-            </mat-panel-title>
-            <mat-panel-description>
-              Fineness of result
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div fxLayout="row">
-            <div fxFlex>
-              Rough
-            </div>
-            <div fxFlex>
-              <mat-slider
-                [min]="1" [max]="5"
-                [step]="1"
-                [tickInterval]="1"
-                [(ngModel)]="setting">
-              </mat-slider>
-            </div>
-            <div fxFlex>
-              Very Fine
-            </div>
-          </div>
-        </mat-expansion-panel>
-        <div style="display: flex; justify-content: center;">
-          <button 
-            mat-raised-button
-            (click)="grpcDrawing()">
-            <mat-icon>settings</mat-icon>
-            <mat-icon>settings</mat-icon>
-            <mat-icon>settings</mat-icon>
-          </button>
-        </div>
-      </mat-accordion>
-    </mat-card>
-  </div>
-  <div fxFlex>
-    <mat-card *ngIf="image">
-      <div style="display:flex; justify-content: center;">
-        <div style="max-width: 100%; justify-content: center;">
-          <img style="max-width:100%" [src]="image">
-        </div>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          Height
+      </mat-panel-title>
+      <mat-panel-description>
+        Height of result (px)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-slider
+      [min]="1" [max]="1000"
+      [step]="1"
+      [(ngModel)]="grinderInputObject.height"
+      [thumbLabel]="true">
+    </mat-slider>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Width
+      </mat-panel-title>
+      <mat-panel-description>
+        Width of result (px)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-slider
+      [min]="1" [max]="1000"
+      [step]="1"
+      [(ngModel)]="grinderInputObject.width"
+      [thumbLabel]="true">
+    </mat-slider>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          Setting
+      </mat-panel-title>
+      <mat-panel-description>
+        Fineness of result
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="row">
+      <div fxFlex>
+        Rough
       </div>
-    </mat-card>
+      <div fxFlex>
+        <mat-slider
+          [min]="1" [max]="5"
+          [step]="1"
+          [tickInterval]="1"
+          [(ngModel)]="grinderInputObject.setting">
+        </mat-slider>
+      </div>
+      <div fxFlex>
+        Very Fine
+      </div>
+    </div>
+  </mat-expansion-panel>
+  <div style="display: flex; justify-content: center;">
+    <button 
+      mat-raised-button
+      (click)="openLink($event)">
+      <mat-icon>settings</mat-icon>
+      <mat-icon>settings</mat-icon>
+      <mat-icon>settings</mat-icon>
+    </button>
   </div>
-</div>
+</mat-accordion>
