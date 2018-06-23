@@ -1,7 +1,7 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
     <div *ngIf="enableSidenav">
-      <button mat-icon-button (click)="snav.toggle()">
+      <button mat-icon-button (click)="toggleLeftSidebar()">
         <mat-icon>
           menu
         </mat-icon>
@@ -29,17 +29,20 @@
       <app-sidenav></app-sidenav>
     </mat-sidenav>
 
+    <mat-sidenav #rsnav 
+     position="end"
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" 
+                 fixedTopGap="56">
+      <router-outlet name="right-sidenav"></router-outlet>
+
+    </mat-sidenav>
+
     <mat-sidenav-content style="padding: 0.8em;" >
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 
-    <mat-sidenav #rightsidenav mode="over" position="end">
-      <router-outlet name="right-sidenav"></router-outlet>
-        <app-draw-form 
-          [grinderInput]="grinderInput"
-          (inputChosen)="inputChosen($event)">
-        </app-draw-form>
-      </mat-sidenav>
+    
     
   </mat-sidenav-container>
 

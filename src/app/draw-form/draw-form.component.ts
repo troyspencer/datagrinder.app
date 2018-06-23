@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
-
-
+import { GrindDrawService } from '../grind-draw.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-draw-form',
@@ -12,13 +12,17 @@ import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
 export class DrawFormComponent implements OnInit {
 
   grinderInputObject: GrinderInput.AsObject;
-  @Input() grinderInput: GrinderInput;
-  @Output() inputChosen = new EventEmitter<GrinderInput>();
+  grinderInput: GrinderInput ;
+
+  subscription: Subscription;
 
   constructor(
-  ) { }
+    private grindDrawService: GrindDrawService
+  ) { 
+  }
 
   ngOnInit() {
+    this.grinderInput = this.grindDrawService.grinderInput;
     this.grinderInputObject = this.grinderInput.toObject();
   }
 
@@ -26,11 +30,9 @@ export class DrawFormComponent implements OnInit {
     this.grinderInput.setHeight(this.grinderInputObject.height);
     this.grinderInput.setWidth(this.grinderInputObject.width);
     this.grinderInput.setSetting(this.grinderInputObject.setting);
-    this.chooseInput(this.grinderInput);
+    this.grindDrawService.grinderInput = this.grinderInput;
+    this.grindDrawService.completeDrawForm(this.grinderInput);
   }
 
-  chooseInput(grinderInput: GrinderInput) {
-    this.inputChosen.emit(grinderInput);
-  }
 
 }

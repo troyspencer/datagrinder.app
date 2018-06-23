@@ -3,9 +3,9 @@
     <mat-card fxFlex style="text-align: center">
       <mat-card-subtitle>Height</mat-card-subtitle>
       <mat-card-content>
-        <div fxLayout="column">
+        <div fxLayout="row">
           <div fxFlex>
-            1000px
+            0px
           </div>
           <div fxFlex>
             <mat-slider
@@ -17,7 +17,7 @@
             </mat-slider>
           </div>
           <div fxFlex>
-            0px
+            1000px
           </div>
         </div>
       </mat-card-content>
@@ -27,9 +27,9 @@
     <mat-card fxFlex style="text-align: center">
       <mat-card-subtitle>Width</mat-card-subtitle>
       <mat-card-content>
-        <div fxLayout="column">
+        <div fxLayout="row">
           <div fxFlex>
-            1000px
+            0px
           </div>
           <div fxFlex>
             <mat-slider
@@ -42,7 +42,7 @@
           </div>
             
           <div fxFlex>
-            0px
+            1000px
           </div>
         </div>
       </mat-card-content>
@@ -54,7 +54,7 @@
       <mat-card-content>
         <div fxLayout="row">
           <div fxFlex>
-            Very Fine
+            Rough
           </div>
           <div fxFlex>
             <mat-slider
@@ -66,7 +66,7 @@
             </mat-slider>
           </div>
           <div fxFlex>
-            Rough
+            Very Fine
           </div>
         </div>
       </mat-card-content>
@@ -74,13 +74,12 @@
   </div>
 
 
-    <button 
-    fxFlexFill 
-      mat-icon-button
-      (click)="clickedGrind($event)">
-      <mat-icon>settings</mat-icon>
-    </button>
-
+  <button 
+  fxFlexFill 
+    mat-button
+    (click)="clickedGrind($event)">
+    <mat-icon>settings</mat-icon>
+  </button>
 
 </div>
   

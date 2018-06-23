@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RightSidenavService {
-
-  constructor() { }
+  public sidenav: MatSidenav;
 }

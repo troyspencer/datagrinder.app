@@ -1,33 +1,17 @@
-
-<mat-sidenav-container class="example-container" (backdropClick)="backdropClicked()">
-  <mat-sidenav #grindsidenav mode="over" position="end">
-    <app-draw-form 
-      [grinderInput]="grinderInput"
-      (inputChosen)="inputChosen($event)"></app-draw-form>
-  </mat-sidenav>
-  <mat-sidenav-content>
-      <mat-card *ngIf="image">
-          <div style="display:flex; justify-content: center;">
-            <div style="max-width: 100%; justify-content: center;">
-              <img style="max-width:100%" [src]="image">
-            </div>
-          </div>
-        </mat-card>
-        
-        <button
-          color="primary"
-          class="mat-elevation-5"
-          style="top: auto;
-          right: 40px;
-          bottom: 40px;
-          left: auto;
-          position: fixed;" 
-          (click)="grindsidenav.toggle()"  
-          mat-fab >
-            <mat-icon >settings</mat-icon>
-        </button>
-  </mat-sidenav-content>
-  
-  
-</mat-sidenav-container>
-
+<div *ngIf="image" style="display:flex; justify-content: center;">
+    <div style="width: 100%; justify-content: center;">
+      <img style="max-width: 100%" [src]="image">
+    </div>
+  </div>
+<button
+  color="primary"
+  class="mat-elevation-5"
+  style="top: auto;
+  right: 40px;
+  bottom: 40px;
+  left: auto;
+  position: fixed;" 
+  (click)="openSidenav()"  
+  mat-fab >
+    <mat-icon >settings</mat-icon>
+</button>

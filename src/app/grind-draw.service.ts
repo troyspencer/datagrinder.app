@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { Grinder } from './protobuf/datagrinder/datagrinder_pb_service';
 import { GrinderInput, GrinderOutput} from './protobuf/datagrinder/datagrinder_pb';
@@ -12,9 +12,18 @@ import { environment } from '../environments/environment';
 
 export class GrindDrawService {
 
+  public grinderInput: GrinderInput = new GrinderInput();
+  private drawFormCompleteSource = new Subject<GrinderInput>();
+
+  drawFormComplete$ = this.drawFormCompleteSource.asObservable();
+
   constructor(
     private _sanitizer: DomSanitizer
-  ) { }
+  ) {
+    this.grinderInput.setHeight(500);
+    this.grinderInput.setWidth(500);
+    this.grinderInput.setSetting(3);
+  }
 
   getGrinderOutput(grinderInput: GrinderInput): Observable<GrinderOutput>  {
     return new Observable<GrinderOutput>((observer) => {
@@ -42,5 +51,9 @@ export class GrindDrawService {
   createUrlForBlob(blob: any) {
     const urlCreator = window.URL;
     return this._sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
+  }
+
+  completeDrawForm(grinderInput: GrinderInput) {
+    this.drawFormCompleteSource.next(grinderInput);
   }
 }
