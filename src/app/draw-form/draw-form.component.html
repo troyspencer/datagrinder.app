@@ -1,85 +1,98 @@
-<div fxLayout="column">
-  <div fxLayout="column">
-    <mat-card fxFlex style="text-align: center">
-      <mat-card-subtitle>Height</mat-card-subtitle>
-      <mat-card-content>
-        <div fxLayout="row">
-          <div fxFlex>
-            0px
+    <div fxLayout="column" fxLayoutAlign="end stretch">
+      <mat-card fxFlex style="text-align: center">
+        <mat-card-subtitle>Height</mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex>
+              0px
+            </div>
+            <div fxFlex>
+              <mat-slider
+                
+                [min]="0" [max]="1000"
+                [step]="1"
+                [(ngModel)]="grinderInputObject.height"
+                [thumbLabel]="true">
+              </mat-slider>
+            </div>
+            <div fxFlex>
+              1000px
+            </div>
           </div>
-          <div fxFlex>
-            <mat-slider
+        </mat-card-content>
+      </mat-card>
+      
+
+      <mat-card fxFlex style="text-align: center">
+        <mat-card-subtitle>Width</mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex>
+              0px
+            </div>
+            <div fxFlex>
+              <mat-slider
+                
+                [min]="0" [max]="1000"
+                [step]="1"
+                [(ngModel)]="grinderInputObject.width"
+                [thumbLabel]="true">
+              </mat-slider>
+            </div>
               
-              [min]="0" [max]="1000"
-              [step]="1"
-              [(ngModel)]="grinderInputObject.height"
-              [thumbLabel]="true">
-            </mat-slider>
+            <div fxFlex>
+              1000px
+            </div>
           </div>
-          <div fxFlex>
-            1000px
+        </mat-card-content>
+      </mat-card>
+
+
+      <mat-card fxFlex style="text-align: center">
+        <mat-card-subtitle>Setting</mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex>
+              Rough
+            </div>
+            <div fxFlex>
+              <mat-slider
+                
+                [min]="1" [max]="5"
+                [step]="1"
+                [tickInterval]="1"
+                [(ngModel)]="grinderInputObject.setting">
+              </mat-slider>
+            </div>
+            <div fxFlex>
+              Very Fine
+            </div>
           </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div fxLayout="row">
+        <button  
+        mat-button
+        (click)="clickedGrind($event)">
+        <mat-icon>settings</mat-icon>
+      </button>
+    
+    
+      <div fxFlex></div>
+    
+    
+      <button
+        mat-button
+        (click)="clickedClose($event)">
+        <mat-icon>keyboard_return</mat-icon>
+      </button>
+    </div>
     
 
-    <mat-card fxFlex style="text-align: center">
-      <mat-card-subtitle>Width</mat-card-subtitle>
-      <mat-card-content>
-        <div fxLayout="row">
-          <div fxFlex>
-            0px
-          </div>
-          <div fxFlex>
-            <mat-slider
-              
-              [min]="0" [max]="1000"
-              [step]="1"
-              [(ngModel)]="grinderInputObject.width"
-              [thumbLabel]="true">
-            </mat-slider>
-          </div>
-            
-          <div fxFlex>
-            1000px
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    
 
 
-    <mat-card fxFlex style="text-align: center">
-      <mat-card-subtitle>Setting</mat-card-subtitle>
-      <mat-card-content>
-        <div fxLayout="row">
-          <div fxFlex>
-            Rough
-          </div>
-          <div fxFlex>
-            <mat-slider
-              
-              [min]="1" [max]="5"
-              [step]="1"
-              [tickInterval]="1"
-              [(ngModel)]="grinderInputObject.setting">
-            </mat-slider>
-          </div>
-          <div fxFlex>
-            Very Fine
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-
-  <button 
-  fxFlexFill 
-    mat-button
-    (click)="clickedGrind($event)">
-    <mat-icon>settings</mat-icon>
-  </button>
-
-</div>
   
