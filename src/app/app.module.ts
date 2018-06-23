@@ -33,11 +33,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-dialog.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DrawComponent } from './draw/draw.component';
+import { DrawFormSheetComponent } from './draw-form-sheet/draw-form-sheet.component';
 
 @NgModule({
   entryComponents: [
     GameHostingDialogComponent,
-    DrawFormComponent
+    DrawFormSheetComponent
   ],
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { DrawComponent } from './draw/draw.component';
     ToolbarSidenavComponent,
     SidenavComponent,
     GameHostingDialogComponent,
-    DrawComponent
+    DrawComponent,
+    DrawFormSheetComponent
   ],
   imports: [
     BrowserAnimationsModule,

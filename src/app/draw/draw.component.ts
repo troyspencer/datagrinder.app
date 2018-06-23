@@ -1,10 +1,10 @@
-import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput, GrinderOutput } from '../protobuf/datagrinder/datagrinder_pb';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material';
-import { DrawFormComponent } from '../draw-form/draw-form.component';
+import {MatBottomSheet, MatBottomSheetRef, MatSidenav} from '@angular/material';
+import { DrawFormSheetComponent } from '../draw-form-sheet/draw-form-sheet.component';
 
 @Component({
   selector: 'app-draw',
@@ -16,6 +16,8 @@ export class DrawComponent implements OnInit {
   image: SafeUrl;
 
   grinderInput: GrinderInput = new GrinderInput();
+
+  @ViewChild(MatSidenav) grindSidenav: MatSidenav;
 
   constructor(
     private bottomSheet: MatBottomSheet,
@@ -30,7 +32,7 @@ export class DrawComponent implements OnInit {
   }
 
   openBottomSheet(): void {
-    const bottomSheetRef = this.bottomSheet.open(DrawFormComponent, {
+    const bottomSheetRef = this.bottomSheet.open(DrawFormSheetComponent, {
       data: this.grinderInput,
     });
 
@@ -41,6 +43,22 @@ export class DrawComponent implements OnInit {
       }
     });
 
+  }
+
+  inputChosen(grinderInput: GrinderInput) {
+    this.grindSidenav.close();
+    if (grinderInput) {
+      this.grinderInput = grinderInput;
+      this.grpcDrawing(grinderInput);
+    }
+  }
+
+  backdropClicked(): boolean {
+    if (this.grindSidenav.opened) {
+      this.grindSidenav.close();
+      return true;
+    }
+    return false;
   }
 
   grpcDrawing(grinderInput: GrinderInput) {

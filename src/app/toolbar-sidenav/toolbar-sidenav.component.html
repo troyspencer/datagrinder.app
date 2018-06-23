@@ -22,9 +22,6 @@
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
                          
-
-      
-
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" 
                  fixedTopGap="56"
@@ -33,11 +30,16 @@
     </mat-sidenav>
 
     <mat-sidenav-content style="padding: 0.8em;" >
-      
       <router-outlet></router-outlet>
-      
-      
     </mat-sidenav-content>
+
+    <mat-sidenav #rightsidenav mode="over" position="end">
+      <router-outlet name="right-sidenav"></router-outlet>
+        <app-draw-form 
+          [grinderInput]="grinderInput"
+          (inputChosen)="inputChosen($event)">
+        </app-draw-form>
+      </mat-sidenav>
     
   </mat-sidenav-container>
 

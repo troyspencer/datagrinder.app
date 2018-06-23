@@ -1,9 +1,7 @@
-import { Component, ChangeDetectorRef, OnDestroy, Input, OnInit, Inject } from '@angular/core';
-import {GrindDrawService} from '../grind-draw.service';
-import {MediaMatcher} from '@angular/cdk/layout';
-import { SafeUrl } from '@angular/platform-browser';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
-import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
+
 
 
 @Component({
@@ -14,22 +12,25 @@ import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular
 export class DrawFormComponent implements OnInit {
 
   grinderInputObject: GrinderInput.AsObject;
+  @Input() grinderInput: GrinderInput;
+  @Output() inputChosen = new EventEmitter<GrinderInput>();
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public grinderInput: GrinderInput,
-    private bottomSheetRef: MatBottomSheetRef<DrawFormComponent>
   ) { }
 
   ngOnInit() {
     this.grinderInputObject = this.grinderInput.toObject();
   }
 
-  openLink(event: MouseEvent): void {
-    this.grinderInput.setSetting(this.grinderInputObject.setting);
+  clickedGrind(): void {
     this.grinderInput.setHeight(this.grinderInputObject.height);
     this.grinderInput.setWidth(this.grinderInputObject.width);
-
-    this.bottomSheetRef.dismiss(this.grinderInput);
-    event.preventDefault();
+    this.grinderInput.setSetting(this.grinderInputObject.setting);
+    this.chooseInput(this.grinderInput);
   }
+
+  chooseInput(grinderInput: GrinderInput) {
+    this.inputChosen.emit(grinderInput);
+  }
+
 }

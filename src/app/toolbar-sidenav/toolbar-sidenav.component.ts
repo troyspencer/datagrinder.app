@@ -8,7 +8,7 @@ import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
 })
 export class ToolbarSidenavComponent implements OnDestroy {
 
-  enableSidenav = false;
+  enableSidenav = true;
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
