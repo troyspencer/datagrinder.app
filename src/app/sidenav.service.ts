@@ -5,6 +5,6 @@ import { MatSidenav } from '@angular/material';
   providedIn: 'root'
 })
 export class SidenavService {
-  public leftSidenav: MatSidenav;
-  public rightSidenav: MatSidenav;
+  public nav: MatSidenav;
+  public activity: MatSidenav;
 }

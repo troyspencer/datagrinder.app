@@ -36,7 +36,7 @@ export class DrawFormComponent implements OnInit {
   }
 
   clickedClose(): void {
-    this.sidenavService.rightSidenav.close();
+    this.sidenavService.activity.close();
   }
 
 }
