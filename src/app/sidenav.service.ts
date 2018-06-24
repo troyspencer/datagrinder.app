@@ -7,4 +7,5 @@ import { MatSidenav } from '@angular/material';
 export class SidenavService {
   public nav: MatSidenav;
   public activity: MatSidenav;
+  public mobileQuery: MediaQueryList;
 }

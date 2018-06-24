@@ -33,6 +33,9 @@ export class DrawFormComponent implements OnInit {
     this.grinderInput.setSetting(this.grinderInputObject.setting);
     this.grindDrawService.grinderInput = this.grinderInput;
     this.grindDrawService.completeDrawForm(this.grinderInput);
+    if (this.sidenavService.mobileQuery.matches) {
+      this.sidenavService.activity.close();
+    }
   }
 
   clickedClose(): void {

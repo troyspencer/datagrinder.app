@@ -35,10 +35,14 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.sidenavService.activity = this.rsnav;
     this.sidenavService.nav = this.lsnav;
+    this.sidenavService.mobileQuery = this.mobileQuery;
+
+    // this.sidenavService.nav.close();
+    this.sidenavService.activity.open();
   }
 
-  toggleLeftSidebar() {
-    this.lsnav.toggle();
+  toggleNav() {
+    this.sidenavService.nav.toggle();
   }
 
 }
