@@ -32,8 +32,8 @@ export class DrawComponent implements OnInit, OnDestroy {
     private bottomSheet: MatBottomSheet,
     private bottomSheetService: BottomSheetService,
     private activityStateService: ActivityStateService
-  ){
-   }
+  ) {
+  }
 
   ngOnInit() {
     this.subscribeToDrawForm();

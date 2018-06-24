@@ -16,7 +16,7 @@ export class DrawFormComponent implements OnInit {
     public grindDrawService: GrindDrawService,
     private bottomSheetService: BottomSheetService,
     private activityStateService: ActivityStateService
-  ) { 
+  ) {
   }
 
   ngOnInit() {
