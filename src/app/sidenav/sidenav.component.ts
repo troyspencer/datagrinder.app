@@ -16,7 +16,4 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
 }
