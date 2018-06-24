@@ -88,7 +88,7 @@ export class DrawComponent implements OnInit, OnDestroy {
   }
 
   openSidenav(): void {
-      this.router.navigate([{ outlets: { 'activity': ['draw'] }}]);
+      this.router.navigate([{ outlets: { 'activity': ['grind'] }}]);
       this.sidenavService.activity.open();
   }
 

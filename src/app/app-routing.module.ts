@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: LandingComponent,
+    component: LandingComponent
   },
   {
     path: 'game',
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'grind',
-    component: DrawComponent,
+    component: DrawComponent
   },
   {
     path: '',
@@ -31,7 +31,7 @@ const routes: Routes = [
     outlet: 'nav'
   },
   {
-    path: 'draw',
+    path: 'grind',
     component: DrawFormComponent,
     outlet: 'activity'
   }

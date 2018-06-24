@@ -16,4 +16,16 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  launchGrind() {
+    this.router.navigate([{ outlets: { primary: ['grind'], activity: ['grind']}}]);
+  }
+
+  launchGame() {
+    this.router.navigate([{ outlets: { primary: ['game'], activity: null }}]);
+  }
+
+  launchAbout() {
+    this.router.navigate([{ outlets: { primary: ['about'], activity: null }}]);
+  }
 }

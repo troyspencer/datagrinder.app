@@ -1,6 +1,6 @@
 
 <mat-nav-list>
-  <a mat-list-item routerLink="/grind">Grind</a>
-  <a *ngIf="sidenavService.isWindows()" mat-list-item routerLink="/game">Game</a>
-  <a mat-list-item routerLink="/about">About</a>
+  <a mat-list-item (click)="launchGrind()">Grind</a>
+  <a *ngIf="sidenavService.isWindows()" mat-list-item (click)="launchGame()">Game</a>
+  <a mat-list-item (click)="launchAbout()">About</a>
 </mat-nav-list>
