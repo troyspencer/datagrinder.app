@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidenavComponent implements OnInit {
 
   constructor(
-    private sidenavService: SidenavService,
+    public sidenavService: SidenavService,
     private router: Router
   ) { }
 

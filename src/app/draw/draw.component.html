@@ -1,5 +1,8 @@
 <div *ngIf="image">
-  <img style="max-width: 100%" [src]="image">
+  <img 
+  style="max-width: 100%" 
+  [src]="image"
+  (error)="img.src = blankImage" #img>
 </div>
 <button
   color="primary"

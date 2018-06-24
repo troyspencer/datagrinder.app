@@ -64,6 +64,9 @@ export class GrindDrawService implements OnInit {
   }
 
   completeDrawForm() {
-    this.drawFormCompleteSource.next();
+    this.grinderInput.setHeight(this.grinderInputObject.height);
+    this.grinderInput.setWidth(this.grinderInputObject.width);
+    this.grinderInput.setSetting(this.grinderInputObject.setting);
+    this.drawFormCompleteSource.next(this.grinderInput);
   }
 }

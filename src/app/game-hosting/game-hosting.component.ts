@@ -12,7 +12,7 @@ export class GameHostingComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private sidenavService: SidenavService
+    public sidenavService: SidenavService
   ) {}
 
   ngOnInit() {

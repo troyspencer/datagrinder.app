@@ -17,6 +17,7 @@ import { ActivityStateService } from '../activity-state.service';
 })
 export class DrawComponent implements OnInit, OnDestroy {
 
+  blankImage: SafeUrl = 'data:image/jpeg;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
   image: SafeUrl;
   grinderInput: GrinderInput = new GrinderInput();
 
@@ -51,7 +52,11 @@ export class DrawComponent implements OnInit, OnDestroy {
     const that = this;
     this.subscription = this.grindDrawService.drawFormComplete$.subscribe({
       next(grinderInput) {
-        that.grpcDrawing();
+        if (grinderInput.getHeight() !== 0 && grinderInput.getWidth() !== 0) {
+          that.grpcDrawing();
+        } else {
+          that.displayImage(String(that.blankImage));
+        }
       }
     } );
   }
@@ -92,7 +97,11 @@ export class DrawComponent implements OnInit, OnDestroy {
     this.bottomSheetService.bottomSheetOpened(true);
   }
 
+  displayImage(base64Image: string) {
+    this.image = base64Image;
+  }
+
   grpcDrawing() {
-    this.grindDrawService.getGrinderOutput().subscribe(grinderOutput => this.image = grinderOutput.getBase64image());
+    this.grindDrawService.getGrinderOutput().subscribe(grinderOutput => this.displayImage(grinderOutput.getBase64image()));
   }
 }
