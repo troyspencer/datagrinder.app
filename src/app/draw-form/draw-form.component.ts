@@ -13,7 +13,7 @@ export class DrawFormComponent implements OnInit {
 
   constructor(
     public sidenavService: SidenavService,
-    private grindDrawService: GrindDrawService,
+    public grindDrawService: GrindDrawService,
     private bottomSheetService: BottomSheetService,
     private activityStateService: ActivityStateService
   ) { 
