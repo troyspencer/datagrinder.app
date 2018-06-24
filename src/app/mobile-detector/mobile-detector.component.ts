@@ -16,6 +16,5 @@ export class MobileDetectorComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.sidenavService.mobileChanged(this.mobileMatches);
-    console.log(changes);
   }
 }

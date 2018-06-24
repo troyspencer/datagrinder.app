@@ -39,6 +39,7 @@ export class DrawComponent implements OnInit, OnDestroy {
     this.subscribeToDrawForm();
     this.subscribeToMobileQuery();
     this.bottomSheetService.bottomSheetRef = this.bottomSheet;
+
     this.openDrawForm();
   }
 
@@ -50,7 +51,7 @@ export class DrawComponent implements OnInit, OnDestroy {
     const that = this;
     this.subscription = this.grindDrawService.drawFormComplete$.subscribe({
       next(grinderInput) {
-        that.grpcDrawing(grinderInput);
+        that.grpcDrawing();
       }
     } );
   }
@@ -91,7 +92,7 @@ export class DrawComponent implements OnInit, OnDestroy {
     this.bottomSheetService.bottomSheetOpened(true);
   }
 
-  grpcDrawing(grinderInput: GrinderInput) {
-    this.grindDrawService.getGrinderOutput(grinderInput).subscribe(grinderOutput => this.image = grinderOutput.getBase64image());
+  grpcDrawing() {
+    this.grindDrawService.getGrinderOutput().subscribe(grinderOutput => this.image = grinderOutput.getBase64image());
   }
 }

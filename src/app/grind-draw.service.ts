@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject} from 'rxjs';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { Grinder } from './protobuf/datagrinder/datagrinder_pb_service';
@@ -10,9 +10,14 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 
-export class GrindDrawService {
+export class GrindDrawService implements OnInit {
 
   public grinderInput: GrinderInput = new GrinderInput();
+  public grinderInputObject: GrinderInput.AsObject = {
+    height: 500,
+    width: 500,
+    setting: 3
+  } ;
   private drawFormCompleteSource = new Subject<GrinderInput>();
 
   drawFormComplete$ = this.drawFormCompleteSource.asObservable();
@@ -20,15 +25,20 @@ export class GrindDrawService {
   constructor(
     private _sanitizer: DomSanitizer
   ) {
-    this.grinderInput.setHeight(500);
-    this.grinderInput.setWidth(500);
-    this.grinderInput.setSetting(3);
   }
 
-  getGrinderOutput(grinderInput: GrinderInput): Observable<GrinderOutput>  {
+  ngOnInit() {
+  }
+
+  getGrinderOutput(): Observable<GrinderOutput>  {
+
+    this.grinderInput.setHeight(this.grinderInputObject.height);
+    this.grinderInput.setWidth(this.grinderInputObject.width);
+    this.grinderInput.setSetting(this.grinderInputObject.setting);
+
     return new Observable<GrinderOutput>((observer) => {
       const rpcOptions = {
-        request: grinderInput,
+        request: this.grinderInput,
         host: environment.host,
         onEnd: res => {
           const { status, message } = res;
@@ -53,7 +63,7 @@ export class GrindDrawService {
     return this._sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
   }
 
-  completeDrawForm(grinderInput: GrinderInput) {
-    this.drawFormCompleteSource.next(grinderInput);
+  completeDrawForm() {
+    this.drawFormCompleteSource.next();
   }
 }
