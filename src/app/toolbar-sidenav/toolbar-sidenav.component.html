@@ -1,22 +1,14 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
-    <div *ngIf="enableSidenav">
-      <button mat-icon-button (click)="toggleNav()">
-        <mat-icon>
-          menu
-        </mat-icon>
-      </button>
-    </div>
-    <div>
-      <a mat-button 
-      class="example-app-name"
-      style="font-size:1.2em;"
-      href="http://scp-wiki.net/scp-914">
-      DataGrinder
-      </a>
-    </div>
-    <span fxFlex></span>
-    <app-game-hosting></app-game-hosting>
+    
+    <button mat-icon-button (click)="sidenavService.nav.toggle()">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
+
+    <a class="app-name" mat-button (click)="landing()">DataGrinder</a>
+    
   </mat-toolbar>
 
   <mat-sidenav-container 
@@ -28,8 +20,7 @@
       #lsnav 
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches" 
-      fixedTopGap="56"
-      *ngIf="enableSidenav">
+      fixedTopGap="56">
       <router-outlet name="nav"></router-outlet>
     </mat-sidenav>
 
@@ -46,8 +37,6 @@
     <mat-sidenav-content style="padding: 0.8em;" >
       <router-outlet></router-outlet>
     </mat-sidenav-content>
-
-    
     
   </mat-sidenav-container>
 

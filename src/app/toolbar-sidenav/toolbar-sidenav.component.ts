@@ -1,8 +1,8 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import { Component, ChangeDetectorRef, OnDestroy, ViewChild, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, ViewChild, OnInit } from '@angular/core';
 import { SidenavService } from '../sidenav.service';
 import { MatSidenav } from '@angular/material';
-import { Subject} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar-sidenav',
@@ -11,9 +11,7 @@ import { Subject} from 'rxjs';
 })
 export class ToolbarSidenavComponent implements OnDestroy, OnInit {
 
-  enableSidenav = false;
   mobileQuery: MediaQueryList;
-
 
   @ViewChild('rsnav') public rsnav: MatSidenav;
   @ViewChild('lsnav') public lsnav: MatSidenav;
@@ -23,7 +21,8 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public sidenavService: SidenavService
+    public sidenavService: SidenavService,
+    private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -38,10 +37,13 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
     this.sidenavService.activity = this.rsnav;
     this.sidenavService.nav = this.lsnav;
     this.sidenavService.mobileQuery = this.mobileQuery;
+    this.landing();
   }
 
-  toggleNav() {
-    this.sidenavService.nav.toggle();
+  landing() {
+    this.router.navigate(['']);
+    this.sidenavService.activity.close();
+    this.sidenavService.nav.open();
   }
 
 }

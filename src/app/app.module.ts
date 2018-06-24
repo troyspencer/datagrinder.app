@@ -35,6 +35,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DrawComponent } from './draw/draw.component';
 import { DrawFormSheetComponent } from './draw-form-sheet/draw-form-sheet.component';
 import { MobileDetectorComponent } from './mobile-detector/mobile-detector.component';
+import { LandingComponent } from './landing/landing.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   entryComponents: [
@@ -52,7 +54,9 @@ import { MobileDetectorComponent } from './mobile-detector/mobile-detector.compo
     GameHostingDialogComponent,
     DrawComponent,
     DrawFormSheetComponent,
-    MobileDetectorComponent
+    MobileDetectorComponent,
+    LandingComponent,
+    AboutComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material';
 import { GameHostingDialogComponent } from '../game-hosting-dialog/game-hosting-dialog.component';
+import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-game-hosting',
   templateUrl: './game-hosting.component.html',
   styleUrls: ['./game-hosting.component.css']
 })
-export class GameHostingComponent {
+export class GameHostingComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private sidenavService: SidenavService
+  ) {}
 
-  isWindows(): Boolean {
-    let OSName = 'Unknown';
-    if (window.navigator.userAgent.indexOf('Windows NT 10.') !== -1) {OSName = 'Windows 10'; }
-    if (window.navigator.userAgent.indexOf('Windows NT 6.2') !== -1) {OSName = 'Windows 8'; }
-    if (window.navigator.userAgent.indexOf('Windows NT 6.1') !== -1) {OSName = 'Windows 7'; }
-    if (OSName === 'Unknown') {return false; } else {return true; }
+  ngOnInit() {
+    this.sidenavService.activity.close();
   }
 
   openDialog(): void {

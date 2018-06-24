@@ -1,6 +1,7 @@
-<button *ngIf="isWindows()"  mat-button 
+<button 
+    *ngIf="sidenavService.isWindows()"
+    style="font-size:1.2em;"  
+    mat-button 
     (click)="openDialog()">
-    <mat-icon>
-        attach_money
-    </mat-icon>
+    MONEY
 </button>
