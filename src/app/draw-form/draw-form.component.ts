@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
-import { RightSidenavService } from '../right-sidenav.service';
+import { SidenavService } from '../sidenav.service';
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
 import { GrindDrawService } from '../grind-draw.service';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ export class DrawFormComponent implements OnInit {
   subscription: Subscription;
 
   constructor(
-    public rightSidenavService: RightSidenavService,
+    public sidenavService: SidenavService,
     private grindDrawService: GrindDrawService
   ) { 
   }
@@ -36,7 +36,7 @@ export class DrawFormComponent implements OnInit {
   }
 
   clickedClose(): void {
-    this.rightSidenavService.sidenav.close();
+    this.sidenavService.rightSidenav.close();
   }
 
 }

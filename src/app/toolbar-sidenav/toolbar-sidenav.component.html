@@ -19,22 +19,27 @@
     <app-game-hosting></app-game-hosting>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container 
+    hasBackdrop="false"
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
                          
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" 
-                 fixedTopGap="56"
-                 *ngIf="enableSidenav">
-      <app-sidenav></app-sidenav>
+    <mat-sidenav 
+      #lsnav 
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" 
+      fixedTopGap="56"
+      *ngIf="enableSidenav">
+      <router-outlet name="nav"></router-outlet>
     </mat-sidenav>
 
-    <mat-sidenav #rsnav 
-     position="end"
-    [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" 
-                 fixedTopGap="56">
-      <router-outlet name="right-sidenav"></router-outlet>
+    <mat-sidenav 
+      #rsnav 
+      position="end"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" 
+      fixedTopGap="56">
+      <router-outlet name="grind"></router-outlet>
 
     </mat-sidenav>
 

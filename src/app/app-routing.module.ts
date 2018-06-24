@@ -6,12 +6,17 @@ import {DrawFormComponent} from './draw-form/draw-form.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'prefix',
+    redirectTo: 'grind'
+  },
+  {
+    path: 'grind',
     component: DrawComponent,
   },
   {
     path: 'draw',
     component: DrawFormComponent,
-    outlet: 'right-sidenav'
+    outlet: 'grind'
   }
 ];
 

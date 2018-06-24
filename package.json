@@ -8,6 +8,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "cd server && dev.bat",
+    "serve": "ng serve --open",
     "game-hosting": "cd server && game_serve.bat",
     "dist": "ng build --prod --deploy-url /static/",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml"

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput, GrinderOutput } from '../protobuf/datagrinder/datagrinder_pb';
-import { RightSidenavService } from '../right-sidenav.service';
+import { SidenavService } from '../sidenav.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +20,7 @@ export class DrawComponent implements OnInit, OnDestroy {
 
   constructor(
     private grindDrawService: GrindDrawService,
-    public rightSidenavService: RightSidenavService,
+    public sidenavService: SidenavService,
     private router: Router
   ){
    }
@@ -43,8 +43,8 @@ export class DrawComponent implements OnInit, OnDestroy {
   }
 
   openSidenav(): void {
-      this.router.navigate([{ outlets: { 'right-sidenav': ['draw'] }}]);
-      this.rightSidenavService.sidenav.open();
+      this.router.navigate([{ outlets: { 'grind': ['draw'] }}]);
+      this.sidenavService.rightSidenav.open();
   }
 
   grpcDrawing(grinderInput: GrinderInput) {

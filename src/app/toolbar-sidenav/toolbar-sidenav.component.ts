@@ -1,6 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Component, ChangeDetectorRef, OnDestroy, ViewChild, OnInit } from '@angular/core';
-import { RightSidenavService } from '../right-sidenav.service';
+import { SidenavService } from '../sidenav.service';
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -14,14 +14,14 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
 
   @ViewChild('rsnav') public rsnav: MatSidenav;
-  @ViewChild('snav') public snav: MatSidenav;
+  @ViewChild('lsnav') public lsnav: MatSidenav;
 
   private _mobileQueryListener: () => void;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public rightSidenavService: RightSidenavService
+    public sidenavService: SidenavService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -33,11 +33,12 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.rightSidenavService.sidenav = this.rsnav;
+    this.sidenavService.rightSidenav = this.rsnav;
+    this.sidenavService.leftSidenav = this.lsnav;
   }
 
   toggleLeftSidebar() {
-    this.snav.toggle();
+    this.lsnav.toggle();
   }
 
 }
