@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'draw',
     component: DrawFormComponent,
-    outlet: 'grind'
+    outlet: 'activity'
   }
 ];
 
