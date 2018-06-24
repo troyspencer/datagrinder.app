@@ -3,6 +3,8 @@ import { SidenavService } from '../sidenav.service';
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
 import { GrindDrawService } from '../grind-draw.service';
 import { Subscription } from 'rxjs';
+import { BottomSheetService } from '../bottom-sheet.service';
+import { ActivityStateService } from '../activity-state.service';
 
 @Component({
   selector: 'app-draw-form',
@@ -18,7 +20,9 @@ export class DrawFormComponent implements OnInit {
 
   constructor(
     public sidenavService: SidenavService,
-    private grindDrawService: GrindDrawService
+    private grindDrawService: GrindDrawService,
+    private bottomSheetService: BottomSheetService,
+    private activityStateService: ActivityStateService
   ) { 
   }
 
@@ -34,12 +38,19 @@ export class DrawFormComponent implements OnInit {
     this.grindDrawService.grinderInput = this.grinderInput;
     this.grindDrawService.completeDrawForm(this.grinderInput);
     if (this.sidenavService.mobileQuery.matches) {
-      this.sidenavService.activity.close();
+      this.bottomSheetService.bottomSheetRef.dismiss();
+      this.activityStateService.activityOpened(false);
+
     }
   }
 
   clickedClose(): void {
-    this.sidenavService.activity.close();
+    this.activityStateService.activityOpened(false);
+    if (this.sidenavService.mobileQuery.matches) {
+      this.bottomSheetService.bottomSheetRef.dismiss();
+    } else {
+      this.sidenavService.activity.close();
+    }
   }
 
 }

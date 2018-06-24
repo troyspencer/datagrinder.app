@@ -1,7 +1,8 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import { Component, ChangeDetectorRef, OnDestroy, ViewChild, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, ViewChild, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { SidenavService } from '../sidenav.service';
 import { MatSidenav } from '@angular/material';
+import { Subject} from 'rxjs';
 
 @Component({
   selector: 'app-toolbar-sidenav',
@@ -12,6 +13,7 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
 
   enableSidenav = false;
   mobileQuery: MediaQueryList;
+
 
   @ViewChild('rsnav') public rsnav: MatSidenav;
   @ViewChild('lsnav') public lsnav: MatSidenav;
@@ -36,9 +38,6 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
     this.sidenavService.activity = this.rsnav;
     this.sidenavService.nav = this.lsnav;
     this.sidenavService.mobileQuery = this.mobileQuery;
-
-    // this.sidenavService.nav.close();
-    this.sidenavService.activity.open();
   }
 
   toggleNav() {

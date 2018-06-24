@@ -1,7 +1,6 @@
-
-    <div *ngIf="image">
-      <img style="max-width: 100%" [src]="image">
-    </div>
+<div *ngIf="image">
+  <img style="max-width: 100%" [src]="image">
+</div>
 <button
   color="primary"
   class="mat-elevation-5"
@@ -11,7 +10,7 @@
   bottom: 40px;
   left: auto;
   position: fixed;" 
-  (click)="openSidenav()"  
+  (click)="openDrawForm()"  
   mat-fab >
     <mat-icon >settings</mat-icon>
 </button>

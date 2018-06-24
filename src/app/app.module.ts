@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
@@ -34,6 +34,7 @@ import { GameHostingDialogComponent } from './game-hosting-dialog/game-hosting-d
 import { AppRoutingModule } from './/app-routing.module';
 import { DrawComponent } from './draw/draw.component';
 import { DrawFormSheetComponent } from './draw-form-sheet/draw-form-sheet.component';
+import { MobileDetectorComponent } from './mobile-detector/mobile-detector.component';
 
 @NgModule({
   entryComponents: [
@@ -50,7 +51,8 @@ import { DrawFormSheetComponent } from './draw-form-sheet/draw-form-sheet.compon
     SidenavComponent,
     GameHostingDialogComponent,
     DrawComponent,
-    DrawFormSheetComponent
+    DrawFormSheetComponent,
+    MobileDetectorComponent
   ],
   imports: [
     BrowserAnimationsModule,
