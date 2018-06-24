@@ -9,7 +9,7 @@
     "e2e": "ng e2e",
     "dev": "cd server && dev.bat",
     "game-hosting": "cd server && game_serve.bat",
-    "build": "ng build --prod --deploy-url /static/",
+    "dist": "ng build --prod --deploy-url /static/",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml"
   },
   "private": true,

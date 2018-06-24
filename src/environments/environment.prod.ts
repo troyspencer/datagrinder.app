@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: location.protocol + '//' + location.hostname + ':' + location.port
+  host: location.protocol + '//' + location.hostname + ':' + location.port + '/api'
 };

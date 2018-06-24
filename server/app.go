@@ -27,7 +27,7 @@ func Run() {
 	appHandler := createAppHandler(wrappedGrpcServer, debug)
 
 	// Set the default http handler function to use our custom handler
-	http.HandleFunc("/", appHandler)
+	http.HandleFunc("/api/", appHandler)
 
 	// The GAE serve.go will call this to set up things,
 	// then run the http server using the configuration made here
@@ -50,7 +50,7 @@ func DebugRun() {
 	appHandler := createAppHandler(wrappedGrpcServer, debug)
 
 	// Set the default http handler function to use our custom handler
-	http.HandleFunc("/", appHandler)
+	http.HandleFunc("/api/", appHandler)
 
 	// The GAE serve.go will call this to set up things,
 	// then run the http server using the configuration made here
@@ -59,21 +59,9 @@ func DebugRun() {
 func createAppHandler(wrappedGrpcServer *grpcweb.WrappedGrpcServer, debug bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if debug {
-			wrappedGrpcServer.ServeHTTP(w, r)
+			http.StripPrefix("/api", wrappedGrpcServer).ServeHTTP(w, r)
 		} else if wrappedGrpcServer.IsGrpcWebRequest(r) {
-			gaegrpc.NewWrapHandler(wrappedGrpcServer).ServeHTTP(w, r)
-		} else {
-			indexHandler(w, r)
+			http.StripPrefix("/api", gaegrpc.NewWrapHandler(wrappedGrpcServer)).ServeHTTP(w, r)
 		}
-	}
-}
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	// if statement redirects all invalid URLs to the root homepage.
-	// Ex: if URL is http://[YOUR_PROJECT_ID].appspot.com/FOO, it will be
-	// redirected to http://[YOUR_PROJECT_ID].appspot.com.
-	if r.URL.Path != "/" {
-		http.Redirect(w, r, "/", http.StatusFound)
-		return
 	}
 }
