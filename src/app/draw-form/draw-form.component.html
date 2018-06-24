@@ -1,5 +1,5 @@
-    <div fxLayout="column" fxLayoutAlign="end stretch">
-      <mat-card fxFlex style="text-align: center">
+    <div fxLayout="column" fxLayoutAlign="end stretch" style="padding: 0.2em">
+      <div fxFlex style="text-align: center">
         <mat-card-subtitle>Height</mat-card-subtitle>
         <mat-card-content>
           <div fxLayout="row">
@@ -20,10 +20,11 @@
             </div>
           </div>
         </mat-card-content>
-      </mat-card>
+      </div>
       
+      <mat-divider></mat-divider>
 
-      <mat-card fxFlex style="text-align: center">
+      <div fxFlex style="text-align: center">
         <mat-card-subtitle>Width</mat-card-subtitle>
         <mat-card-content>
           <div fxLayout="row">
@@ -45,10 +46,11 @@
             </div>
           </div>
         </mat-card-content>
-      </mat-card>
+      </div>
 
+      <mat-divider></mat-divider>
 
-      <mat-card fxFlex style="text-align: center">
+      <div fxFlex style="text-align: center">
         <mat-card-subtitle>Setting</mat-card-subtitle>
         <mat-card-content>
           <div fxLayout="row">
@@ -69,28 +71,30 @@
             </div>
           </div>
         </mat-card-content>
-      </mat-card>
+      </div>
     </div>
 
+    <mat-divider></mat-divider>
 
     <div fxLayout="row">
-        <button  
-        mat-button
-        (click)="clickedGrind()">
-        <mat-icon>settings</mat-icon>
-      </button>
-    
-    
-      <div fxFlex></div>
-    
-    
       <button
+        fxFlex
         mat-button
         (click)="clickedClose()">
         <mat-icon>keyboard_return</mat-icon>
       </button>
+
+      <mat-divider [vertical]="true"></mat-divider>
+    
+      <button
+        fxFlex
+        mat-button
+        (click)="clickedGrind()">
+        <mat-icon>settings</mat-icon>
+      </button>
     </div>
     
+    <mat-divider></mat-divider>
 
     
 
