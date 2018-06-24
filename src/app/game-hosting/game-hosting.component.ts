@@ -16,6 +16,7 @@ export class GameHostingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.sidenavService.nav.open();
     this.sidenavService.activity.close();
   }
 

@@ -40,7 +40,7 @@ export class DrawComponent implements OnInit, OnDestroy {
     this.subscribeToDrawForm();
     this.subscribeToMobileQuery();
     this.bottomSheetService.bottomSheetRef = this.bottomSheet;
-
+    this.sidenavService.nav.open();
     this.openDrawForm();
   }
 

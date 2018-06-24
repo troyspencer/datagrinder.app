@@ -10,12 +10,8 @@ import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: LandingComponent,
-  },
-  {
-    path: '',
-    component: SidenavComponent,
-    outlet: 'nav'
   },
   {
     path: 'game',
@@ -28,6 +24,11 @@ const routes: Routes = [
   {
     path: 'grind',
     component: DrawComponent,
+  },
+  {
+    path: '',
+    component: SidenavComponent,
+    outlet: 'nav'
   },
   {
     path: 'draw',

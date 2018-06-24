@@ -13,6 +13,7 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.sidenavService.nav.open();
     this.sidenavService.activity.close();
   }
 

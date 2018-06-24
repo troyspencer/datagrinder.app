@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SidenavService } from '../sidenav.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -9,12 +10,18 @@ import { SidenavService } from '../sidenav.service';
 export class LandingComponent implements OnInit {
 
   constructor(
-    private sidenavService: SidenavService
+    private sidenavService: SidenavService,
+    private router: Router
   ) { }
 
 
   ngOnInit() {
+    this.landing();
+  }
 
+  landing() {
+    this.sidenavService.activity.close();
+    this.sidenavService.nav.open();
   }
 
 }

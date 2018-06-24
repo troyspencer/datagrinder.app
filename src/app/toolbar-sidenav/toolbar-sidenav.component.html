@@ -18,7 +18,7 @@
                          
     <mat-sidenav 
       #lsnav 
-      [mode]="mobileQuery.matches ? 'side' : 'side'"
+      mode="side"
       [fixedInViewport]="mobileQuery.matches" 
       fixedTopGap="56">
       <router-outlet name="nav"></router-outlet>
@@ -27,7 +27,7 @@
     <mat-sidenav 
       #rsnav 
       position="end"
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      mode="side"
       [fixedInViewport]="mobileQuery.matches" 
       fixedTopGap="56">
       <router-outlet name="activity"></router-outlet>
