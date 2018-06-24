@@ -37,7 +37,6 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
     this.sidenavService.activity = this.rsnav;
     this.sidenavService.nav = this.lsnav;
     this.sidenavService.mobileQuery = this.mobileQuery;
-
   }
 
   landing() {
