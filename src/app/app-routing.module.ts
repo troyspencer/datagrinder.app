@@ -6,11 +6,12 @@ import { GameHostingComponent } from './game-hosting/game-hosting.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
+import { BlankSidenavComponent } from './blank-sidenav/blank-sidenav.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
+    pathMatch: 'prefix',
     component: LandingComponent
   },
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     path: '',
     component: SidenavComponent,
     outlet: 'nav'
+  },
+  {
+    path: 'none',
+    component: BlankSidenavComponent,
+    outlet: 'activity'
   },
   {
     path: 'grind',

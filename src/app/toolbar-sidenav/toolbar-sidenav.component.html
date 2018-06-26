@@ -1,5 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
+  <mat-toolbar color="primary" class="example-toolbar mat-elevation-z6" >
     
     <button mat-icon-button (click)="sidenavService.nav.toggle()">
       <mat-icon>
@@ -19,8 +19,9 @@
     <mat-sidenav 
       #lsnav 
       mode="side"
-      [fixedInViewport]="mobileQuery.matches" 
-      fixedTopGap="56">
+      [fixedInViewport]
+      fixedTopGap="56"
+      class="mat-elevation-z5">
       <router-outlet name="nav"></router-outlet>
     </mat-sidenav>
 
@@ -29,7 +30,8 @@
       position="end"
       mode="side"
       [fixedInViewport]="mobileQuery.matches" 
-      fixedTopGap="56">
+      fixedTopGap="56"
+      class="mat-elevation-z5">
       <router-outlet name="activity"></router-outlet>
 
     </mat-sidenav>

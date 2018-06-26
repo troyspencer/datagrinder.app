@@ -19,13 +19,16 @@ export class SidenavComponent implements OnInit {
 
   launchGrind() {
     this.router.navigate([{ outlets: { primary: ['grind'], activity: ['grind']}}]);
+    this.sidenavService.activity.open();
   }
 
   launchGame() {
-    this.router.navigate([{ outlets: { primary: ['game'], activity: null }}]);
+    this.router.navigate([{ outlets: { primary: ['game'], activity: 'none' }}]);
+    this.sidenavService.activity.close();
   }
 
   launchAbout() {
-    this.router.navigate([{ outlets: { primary: ['about'], activity: null }}]);
+    this.router.navigate([{ outlets: { primary: ['about'], activity: 'none' }}]);
+    this.sidenavService.activity.close();
   }
 }

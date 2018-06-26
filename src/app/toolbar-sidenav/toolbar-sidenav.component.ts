@@ -40,7 +40,7 @@ export class ToolbarSidenavComponent implements OnDestroy, OnInit {
   }
 
   landing() {
-    this.router.navigate(['']);
+    this.router.navigate(['', { outlets: {primary: null,  activity: ['none']}}]);
     this.sidenavService.activity.close();
     this.sidenavService.nav.open();
   }

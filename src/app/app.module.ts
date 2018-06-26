@@ -37,6 +37,7 @@ import { DrawFormSheetComponent } from './draw-form-sheet/draw-form-sheet.compon
 import { MobileDetectorComponent } from './mobile-detector/mobile-detector.component';
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
+import { BlankSidenavComponent } from './blank-sidenav/blank-sidenav.component';
 
 @NgModule({
   entryComponents: [
@@ -56,7 +57,8 @@ import { AboutComponent } from './about/about.component';
     DrawFormSheetComponent,
     MobileDetectorComponent,
     LandingComponent,
-    AboutComponent
+    AboutComponent,
+    BlankSidenavComponent
   ],
   imports: [
     BrowserAnimationsModule,
