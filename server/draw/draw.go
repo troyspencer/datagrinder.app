@@ -15,7 +15,17 @@ import (
 
 // Draw takes a drawGrind object and converts it into an image.Image
 func Draw(g pb.GrinderInput) image.Image {
-	m := image.NewRGBA(image.Rect(0, 0, int(g.Width), int(g.Height)))
+
+	var width, height int
+	maxSize := 1000
+	if g.Width >= g.Height {
+		width = maxSize
+		height = int(float32(maxSize) * float32(g.Height) / float32(g.Width))
+	} else {
+		width = int(float32(maxSize) * float32(g.Width) / float32(g.Height))
+		height = maxSize
+	}
+	m := image.NewRGBA(image.Rect(0, 0, width, height))
 
 	blue := color.RGBA{uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), 255}
 	draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
