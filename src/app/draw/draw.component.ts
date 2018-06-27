@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
 import { SafeUrl } from '@angular/platform-browser';
 import { GrinderInput, GrinderOutput } from '../protobuf/datagrinder/datagrinder_pb';
 import { SidenavService } from '../sidenav.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet, MatSidenavContainer, MatSidenavContent } from '@angular/material';
 import { DrawFormSheetComponent } from '../draw-form-sheet/draw-form-sheet.component';
 import { BottomSheetService } from '../bottom-sheet.service';
 import { ActivityStateService } from '../activity-state.service';
@@ -25,6 +25,8 @@ export class DrawComponent implements OnInit, OnDestroy {
   mobileQuerySubscription: Subscription;
   isMobile: boolean;
   isFormOpen: boolean;
+
+  @ViewChild('sidenavContainer') sidenavContainer: MatSidenavContent;
 
   constructor(
     private grindDrawService: GrindDrawService,
@@ -104,4 +106,7 @@ export class DrawComponent implements OnInit, OnDestroy {
   grpcDrawing() {
     this.grindDrawService.getGrinderOutput().subscribe(grinderOutput => this.displayImage(grinderOutput.getBase64image()));
   }
+
 }
+
+
