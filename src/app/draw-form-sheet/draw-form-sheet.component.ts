@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, OnDestroy, Input, OnInit, Inject } from '
 import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
 import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
 import { GrindDrawService } from '../grind-draw.service';
+import { BottomSheetService } from '../bottom-sheet.service';
 
 @Component({
   selector: 'app-draw-form-sheet',
@@ -15,10 +16,12 @@ export class DrawFormSheetComponent implements OnInit {
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<DrawFormSheetComponent>,
+    public bottomSheetService: BottomSheetService,
     private grindDrawService: GrindDrawService
   ) { }
 
   ngOnInit() {
+    this.bottomSheetService.bottomSheetRef = this.bottomSheetRef;
     this.grinderInputObject = this.grindDrawService.grinderInput.toObject();
   }
 

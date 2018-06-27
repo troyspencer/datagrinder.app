@@ -33,7 +33,7 @@ export class DrawComponent implements OnInit, OnDestroy {
     public sidenavService: SidenavService,
     private router: Router,
     private bottomSheet: MatBottomSheet,
-    private bottomSheetService: BottomSheetService,
+    public bottomSheetService: BottomSheetService,
     private activityStateService: ActivityStateService
   ) {
   }
@@ -41,7 +41,7 @@ export class DrawComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeToDrawForm();
     this.subscribeToMobileQuery();
-    this.bottomSheetService.bottomSheetRef = this.bottomSheet;
+    this.bottomSheetService.bottomSheet = this.bottomSheet;
     this.sidenavService.nav.open();
     this.openDrawForm();
   }
@@ -72,7 +72,7 @@ export class DrawComponent implements OnInit, OnDestroy {
             that.sidenavService.activity.close();
             that.openBottomSheet();
         } else {
-            that.bottomSheet.dismiss();
+            that.bottomSheetService.bottomSheetRef.dismiss();
             that.openSidenav();
           }
         }
@@ -95,7 +95,7 @@ export class DrawComponent implements OnInit, OnDestroy {
   }
 
   openBottomSheet() {
-    this.bottomSheet.open(DrawFormSheetComponent);
+    this.bottomSheetService.bottomSheetRef = this.bottomSheet.open(DrawFormSheetComponent);
     this.bottomSheetService.bottomSheetOpened(true);
   }
 

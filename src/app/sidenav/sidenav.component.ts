@@ -19,7 +19,9 @@ export class SidenavComponent implements OnInit {
 
   launchGrind() {
     this.router.navigate([{ outlets: { primary: ['grind'], activity: ['grind']}}]);
-    this.sidenavService.activity.open();
+    if (!this.sidenavService.mobileQuery.matches) {
+      this.sidenavService.activity.open();
+    }
   }
 
   launchGame() {

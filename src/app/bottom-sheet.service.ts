@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject} from 'rxjs';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ import { MatBottomSheet } from '@angular/material';
 export class BottomSheetService {
 
   public bottomSheetExists: boolean;
-  public bottomSheetRef: MatBottomSheet;
+  public bottomSheet: MatBottomSheet;
+  public bottomSheetRef: MatBottomSheetRef;
 
   private bottomSheetOpenedSource = new Subject<boolean>();
 

@@ -25,7 +25,7 @@ export class DrawFormComponent implements OnInit {
   clickedGrind(): void {
     this.grindDrawService.completeDrawForm();
     if (this.sidenavService.mobileQuery.matches) {
-      this.bottomSheetService.bottomSheetRef.dismiss();
+      this.bottomSheetService.bottomSheet.dismiss();
       this.activityStateService.activityOpened(false);
 
     }
@@ -34,7 +34,8 @@ export class DrawFormComponent implements OnInit {
   clickedClose(): void {
     this.activityStateService.activityOpened(false);
     if (this.sidenavService.mobileQuery.matches) {
-      this.bottomSheetService.bottomSheetRef.dismiss();
+      this.bottomSheetService.bottomSheet.dismiss();
+      this.bottomSheetService.bottomSheetExists = false;
     } else {
       this.sidenavService.activity.close();
     }
