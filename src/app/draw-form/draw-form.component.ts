@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../sidenav.service';
 import { GrindDrawService } from '../grind-draw.service';
 import { BottomSheetService } from '../bottom-sheet.service';
-import { ActivityStateService } from '../activity-state.service';
 
 @Component({
   selector: 'app-draw-form',
@@ -14,31 +13,28 @@ export class DrawFormComponent implements OnInit {
   constructor(
     public sidenavService: SidenavService,
     public grindDrawService: GrindDrawService,
-    private bottomSheetService: BottomSheetService,
-    private activityStateService: ActivityStateService
+    private bottomSheetService: BottomSheetService
   ) {
   }
 
   ngOnInit() {
   }
 
-  clickedGrind(): void {
+  clickedGrind(event: MouseEvent): void {
     this.grindDrawService.completeDrawForm();
-    if (this.sidenavService.mobileQuery.matches) {
+    if (this.bottomSheetService.bottomSheet) {
       this.bottomSheetService.bottomSheet.dismiss();
-      this.activityStateService.activityOpened(false);
-
     }
+    event.preventDefault();
   }
 
-  clickedClose(): void {
-    this.activityStateService.activityOpened(false);
-    if (this.sidenavService.mobileQuery.matches) {
+  clickedClose(event: MouseEvent): void {
+
+    if (this.bottomSheetService.bottomSheet) {
       this.bottomSheetService.bottomSheet.dismiss();
-      this.bottomSheetService.bottomSheetExists = false;
-    } else {
-      this.sidenavService.activity.close();
     }
+    this.sidenavService.activity.close();
+    event.preventDefault();
   }
 
 }

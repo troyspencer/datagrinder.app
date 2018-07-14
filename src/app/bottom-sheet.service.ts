@@ -8,12 +8,16 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 export class BottomSheetService {
 
   public bottomSheetExists: boolean;
-  public bottomSheet: MatBottomSheet;
   public bottomSheetRef: MatBottomSheetRef;
 
   private bottomSheetOpenedSource = new Subject<boolean>();
 
   bottomSheetOpened$ = this.bottomSheetOpenedSource.asObservable();
+
+  constructor(
+    public bottomSheet: MatBottomSheet
+  ) {
+  }
 
   bottomSheetOpened(bottomSheetExists: boolean) {
     this.bottomSheetExists = bottomSheetExists;

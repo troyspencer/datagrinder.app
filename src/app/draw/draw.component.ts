@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 import { MatBottomSheet, MatSidenavContainer, MatSidenavContent } from '@angular/material';
 import { DrawFormSheetComponent } from '../draw-form-sheet/draw-form-sheet.component';
 import { BottomSheetService } from '../bottom-sheet.service';
-import { ActivityStateService } from '../activity-state.service';
 
 @Component({
   selector: 'app-draw',
@@ -32,16 +31,13 @@ export class DrawComponent implements OnInit, OnDestroy {
     private grindDrawService: GrindDrawService,
     public sidenavService: SidenavService,
     private router: Router,
-    private bottomSheet: MatBottomSheet,
-    public bottomSheetService: BottomSheetService,
-    private activityStateService: ActivityStateService
+    public bottomSheetService: BottomSheetService
   ) {
   }
 
   ngOnInit() {
     this.subscribeToDrawForm();
     this.subscribeToMobileQuery();
-    this.bottomSheetService.bottomSheet = this.bottomSheet;
     this.sidenavService.nav.open();
     this.openDrawForm();
   }
@@ -67,21 +63,18 @@ export class DrawComponent implements OnInit, OnDestroy {
     const that = this;
     this.mobileQuerySubscription = this.sidenavService.mobileQueryChanged$.subscribe({
       next(isMobile) {
-        if (that.activityStateService.activityOpen) {
-          if (isMobile) {
-            that.sidenavService.activity.close();
-            that.openBottomSheet();
+        if (isMobile) {
+          that.openBottomSheet();
+          that.closeSidenav();
         } else {
-            that.bottomSheetService.bottomSheetRef.dismiss();
-            that.openSidenav();
-          }
+          that.closeBottomSheet();
+          that.openSidenav();
         }
       }
     });
   }
 
   openDrawForm(): void {
-    this.activityStateService.activityOpened(true);
     if (this.sidenavService.mobileQuery.matches) {
       this.openBottomSheet();
     } else {
@@ -94,9 +87,16 @@ export class DrawComponent implements OnInit, OnDestroy {
       this.sidenavService.activity.open();
   }
 
+  closeSidenav() {
+    this.sidenavService.activity.close();
+  }
+
   openBottomSheet() {
-    this.bottomSheetService.bottomSheetRef = this.bottomSheet.open(DrawFormSheetComponent);
-    this.bottomSheetService.bottomSheetOpened(true);
+    this.bottomSheetService.bottomSheet.open(DrawFormSheetComponent);
+  }
+
+  closeBottomSheet() {
+    this.bottomSheetService.bottomSheet.dismiss();
   }
 
   displayImage(base64Image: string) {
