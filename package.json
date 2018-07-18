@@ -11,6 +11,7 @@
     "serve": "ng serve --open",
     "game-hosting": "cd server && game_serve.bat",
     "dist": "ng build --prod --deploy-url /static/",
+    "proto": "cd protobuf && protoc_gen.bat",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml"
   },
   "private": true,
