@@ -1,8 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject} from 'rxjs';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import { Grinder } from './protobuf/datagrinder/datagrinder_pb_service';
-import { GrinderInput, GrinderOutput} from './protobuf/datagrinder/datagrinder_pb';
+import { Grinder } from './protobuf/datagrinder_pb_service';
+import { GrinderInput, GrinderOutput} from './protobuf/datagrinder_pb';
 import { grpc } from 'grpc-web-client';
 import { environment } from '../environments/environment';
 

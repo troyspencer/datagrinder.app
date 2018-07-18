@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnDestroy, Input, OnInit, Inject, AfterViewChecked } from '@angular/core';
-import { GrinderInput } from '../protobuf/datagrinder/datagrinder_pb';
+import { GrinderInput } from '../protobuf/datagrinder_pb';
 import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material';
 import { GrindDrawService } from '../grind-draw.service';
 import { BottomSheetService } from '../bottom-sheet.service';

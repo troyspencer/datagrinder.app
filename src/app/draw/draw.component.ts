@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import {GrindDrawService} from '../grind-draw.service';
 import { SafeUrl } from '@angular/platform-browser';
-import { GrinderInput, GrinderOutput } from '../protobuf/datagrinder/datagrinder_pb';
+import { GrinderInput, GrinderOutput } from '../protobuf/datagrinder_pb';
 import { SidenavService } from '../sidenav.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
