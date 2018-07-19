@@ -44,6 +44,7 @@ export class DrawComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.mobileQuerySubscription.unsubscribe();
   }
 
   subscribeToDrawForm() {
