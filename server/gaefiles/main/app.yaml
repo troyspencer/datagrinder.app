@@ -25,8 +25,8 @@ handlers:
 
 # Serve favicon.ico on expected path
 - url: /favicon\.ico
-  static_files: static/favicon.ico
-  upload: static/favicon\.ico
+  static_files: static/assets/favicon.ico
+  upload: static/assets/favicon\.ico
 
 
 
