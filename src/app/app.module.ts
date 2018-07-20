@@ -38,6 +38,8 @@ import { MobileDetectorComponent } from './mobile-detector/mobile-detector.compo
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
 import { BlankSidenavComponent } from './blank-sidenav/blank-sidenav.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   entryComponents: [
@@ -81,7 +83,8 @@ import { BlankSidenavComponent } from './blank-sidenav/blank-sidenav.component';
     MatBottomSheetModule,
     MatGridListModule,
     MatTooltipModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('/static/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
