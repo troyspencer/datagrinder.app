@@ -10,7 +10,7 @@
     "dev": "cd server && dev.bat",
     "serve": "ng serve --open",
     "game-hosting": "cd server && game_serve.bat",
-    "serve-test": "ng build --prod && cd server/gaefiles/main/static && http-server -p 8081",
+    "serve-test": "ng build --prod && cd server/gaefiles/main/static && http-server -p 8080",
     "dist": "ng build --prod --deploy-url /static/",
     "proto": "cd protobuf && protoc_gen.bat",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml",
