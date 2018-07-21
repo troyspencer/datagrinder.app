@@ -20,5 +20,14 @@
         "/assets/**"
       ]
     }
+  },
+  {
+    "name": "fonts",
+    "resources": {
+      "urls": [
+        "https://fonts.googleapis.com/icon?family=Material+Icons",
+        "https://fonts.googleapis.com/css?family=Roboto"
+      ]
+    }
   }]
 }
