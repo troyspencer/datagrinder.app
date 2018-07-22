@@ -26,7 +26,8 @@
     "resources": {
       "urls": [
         "https://fonts.googleapis.com/icon?family=Material+Icons",
-        "https://fonts.googleapis.com/css?family=Roboto"
+        "https://fonts.googleapis.com/css?family=Roboto",
+        "https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"
       ]
     }
   }]
