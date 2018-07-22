@@ -23,9 +23,9 @@ handlers:
   static_files: static/ngsw.json
   upload: static/ngsw\.json
 
-- url: /static/(.*\.(js|css|json|html))$
+- url: /static/(.*\.(js|css|json|html|ico))$
   static_files: static/\1
-  upload: static/.*\.(js|css|json|html)$
+  upload: static/.*\.(js|css|json|html|ico)$
 
 - url: /static/assets/(.*\.(gif|png|jpg))$
   static_files: static/assets/\1

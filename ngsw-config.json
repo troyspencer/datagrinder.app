@@ -1,5 +1,5 @@
 {
-  "index": "/",
+  "index": "/index.html",
   "assetGroups": [{
     "name": "app",
     "installMode": "prefetch",
@@ -8,13 +8,25 @@
         "/favicon.ico",
         "/index.html",
         "/*.css",
-        "/*.js"
+        "/*.*.js",
+        "!/*.j",
+        "!/*.min.js"
       ]
     }
   }, {
     "name": "assets",
     "installMode": "lazy",
     "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/logo.png"
+      ]
+    }
+  },
+  {
+    "name": "lazy-assets",
+    "installMode": "lazy",
+    "updateMode": "lazy",
     "resources": {
       "files": [
         "/assets/**"

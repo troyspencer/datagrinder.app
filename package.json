@@ -12,7 +12,7 @@
     "game-hosting": "cd server && game_serve.bat",
     "serve-test": "yarn local && cd server/gaefiles/main/static && http-server -p 8081",
     "local": "ng build -c production-local && yarn ngsw-patch",
-    "ngsw-deploy": "./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/ && yarn ngsw-patch",
+    "ngsw-deploy": "yarn ngsw-patch && ./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/",
     "ngsw-patch": "grep -vwE \"sourceMappingURL\" server/gaefiles/main/static/ngsw-worker.js > server/gaefiles/main/static/ngsw-worker.js.tmp && mv server/gaefiles/main/static/ngsw-worker.js.tmp server/gaefiles/main/static/ngsw-worker.js ",
     "dist": "ng build --prod && yarn ngsw-deploy",
     "proto": "cd protobuf && protoc_gen.bat",
