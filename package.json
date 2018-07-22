@@ -14,7 +14,7 @@
     "local": "ng build -c production-local && yarn ngsw-patch",
     "ngsw-deploy": "./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/ && yarn ngsw-patch",
     "ngsw-patch": "grep -vwE \"sourceMappingURL\" server/gaefiles/main/static/ngsw-worker.js > server/gaefiles/main/static/ngsw-worker.js.tmp && mv server/gaefiles/main/static/ngsw-worker.js.tmp server/gaefiles/main/static/ngsw-worker.js ",
-    "dist": "ng build --prod && yarn ngsw",
+    "dist": "ng build --prod && yarn ngsw-deploy",
     "proto": "cd protobuf && protoc_gen.bat",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml",
     "deploy-test": "gcloud app deploy --project=keen-ascent-205301 --no-promote server/gaefiles/main/app.yaml"
