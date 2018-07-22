@@ -13,7 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/",
             "deployUrl": "/static/",
             "outputPath": "./server/gaefiles/main/static",
             "index": "src/index.html",
@@ -35,6 +34,29 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            },
+            "production-local": {
+              "deployUrl": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.local.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.local.html"
                 }
               ],
               "optimization": true,

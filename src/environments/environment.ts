@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  host: location.protocol + '//localhost:8080/api'
+  host: location.protocol + '//localhost:8080/api',
+  deployUrl: '/static/'
 };
 
 /*

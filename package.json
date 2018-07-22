@@ -10,8 +10,11 @@
     "dev": "cd server && dev.bat",
     "serve": "ng serve --open",
     "game-hosting": "cd server && game_serve.bat",
-    "serve-test": "yarn dist && cd server/gaefiles/main && http-server -p 8080",
-    "dist": "ng build --prod && ./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/",
+    "serve-test": "yarn local && cd server/gaefiles/main/static && http-server -p 8081",
+    "local": "ng build -c production-local && yarn ngsw-patch",
+    "ngsw-deploy": "./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/ && yarn ngsw-patch",
+    "ngsw-patch": "grep -vwE \"sourceMappingURL\" server/gaefiles/main/static/ngsw-worker.js > server/gaefiles/main/static/ngsw-worker.js.tmp && mv server/gaefiles/main/static/ngsw-worker.js.tmp server/gaefiles/main/static/ngsw-worker.js ",
+    "dist": "ng build --prod && yarn ngsw",
     "proto": "cd protobuf && protoc_gen.bat",
     "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml",
     "deploy-test": "gcloud app deploy --project=keen-ascent-205301 --no-promote server/gaefiles/main/app.yaml"
@@ -41,8 +44,8 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.6.5",
-    "@angular/cli": "^6.0.8",
+    "@angular-devkit/build-angular": "^0.7.0-rc.0",
+    "@angular/cli": "^6.1.0-rc.0",
     "@angular/compiler-cli": "^6.0.9",
     "@angular/language-service": "^6.0.9",
     "@types/jasmine": "~2.8.6",

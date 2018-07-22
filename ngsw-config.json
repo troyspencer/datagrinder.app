@@ -30,5 +30,11 @@
         "https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"
       ]
     }
-  }]
+  }],
+  "navigationUrls": [
+    "/**",           
+    "!/**/*.*",      
+    "!/**/*__*",     
+    "!/**/*__*/**"
+  ]
 }
