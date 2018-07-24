@@ -41,14 +41,6 @@ handlers:
   static_files: static/assets/icons/\1
   upload: static/assets/icons/.*\.(gif|png|jpg|json)$
 
-- url: /assets/(.*\.(gif|png|jpg))$
-  static_files: static/assets/\1
-  upload: static/assets/.*\.(gif|png|jpg)$
-
-- url: /assets/icons/(.*\.(gif|png|jpg|json))$
-  static_files: static/assets/icons/\1
-  upload: static/assets/icons/.*\.(gif|png|jpg|json)$
-
 # If the path is empty, show static index.html file
 - url: (.*)/
   static_files: static/index.html
