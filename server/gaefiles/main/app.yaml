@@ -1,6 +1,8 @@
 runtime: go
 api_version: go1
 
+default_expiration: "365d"
+
 handlers:
   # API calls are handled by Go App
 - url: /api/.*
