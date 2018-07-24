@@ -25,6 +25,10 @@ handlers:
   static_files: static/ngsw.json
   upload: static/ngsw\.json
 
+- url: /robots\.txt
+  static_files: static/robots.txt
+  upload: static/robots\.txt
+
 - url: /static/(.*\.(js|css|json|html|ico))$
   static_files: static/\1
   upload: static/.*\.(js|css|json|html|ico)$
