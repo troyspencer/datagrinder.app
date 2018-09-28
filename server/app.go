@@ -2,7 +2,7 @@ package server
 
 import (
 	"gcloud/grpc_playground/server/api"
-	"gcloud/grpc_playground/server/datagrinder"
+	"gcloud/grpc_playground/server/protobuf/datagrinder"
 	"net/http"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"

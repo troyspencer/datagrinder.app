@@ -1,2 +1,2 @@
-protoc -I . ./datagrinder.proto --go_out=plugins=grpc:../server/datagrinder
+protoc -I . ./datagrinder.proto --go_out=plugins=grpc:../server/protobuf/datagrinder
 protoc --plugin="protoc-gen-ts=..\node_modules\.bin\protoc-gen-ts.cmd" --js_out="import_style=commonjs,binary:..\src\app\protobuf" --ts_out="service=true:..\src\app\protobuf"  ./datagrinder.proto

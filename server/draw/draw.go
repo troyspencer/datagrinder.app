@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	pb "gcloud/grpc_playground/server/datagrinder"
+	"gcloud/grpc_playground/server/protobuf/datagrinder"
 	"image"
 	"image/color"
 	"image/draw"
@@ -14,7 +14,7 @@ import (
 )
 
 // Draw takes a drawGrind object and converts it into an image.Image
-func Draw(g pb.GrinderInput) image.Image {
+func Draw(g datagrinder.GrinderInput) image.Image {
 
 	var width, height int
 	maxSize := 1000

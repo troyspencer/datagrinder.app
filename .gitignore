@@ -8,7 +8,7 @@
 /server/gaefiles/main/static/
 /server/debug.test
 /server/debug
-/server/datagrinder/*.pb.go
+/server/protobuf/*
 
 # protobuf generated files
 /src/app/protobuf

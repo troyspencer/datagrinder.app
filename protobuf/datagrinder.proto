@@ -1,8 +1,9 @@
 syntax = "proto3";
+package datagrinder;
 
 service Grinder {
     // Returns a grind result
-    rpc Grind (GrinderInput) returns (GrinderOutput) {}
+    rpc Grind (datagrinder.GrinderInput) returns (datagrinder.GrinderOutput) {}
 }
 
 message GrinderInput {
