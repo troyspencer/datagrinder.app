@@ -1,7 +1,14 @@
-<button 
-    *ngIf="sidenavService.isWindows()"
-    style="font-size:1.2em;"  
-    mat-button 
-    (click)="openDialog()">
-    MONEY
-</button>
+<div fxLayout="column" fxLayoutAlign="start start">
+    <a mat-button
+        style="font-size:1.2em;" 
+        href="https://launch-dot-keen-ascent-205301.appspot.com/">
+        LAUNCH
+    </a>
+    <button 
+        *ngIf="sidenavService.isWindows()"
+        style="font-size:1.2em;"  
+        mat-button 
+        (click)="openDialog()">
+        MONEY
+    </button>
+</div>
