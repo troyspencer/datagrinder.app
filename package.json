@@ -7,12 +7,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "dev_appserver.py server/gaefiles/main/app.yaml",
-    "ngsw-deploy": "./node_modules/.bin/ngsw-config server/gaefiles/main/static/ ./ngsw-config.json  /static/",
+    "dev": "dev_appserver.py server/gaefiles/app.yaml",
+    "ngsw-deploy": "./node_modules/.bin/ngsw-config server/gaefiles/static/ ./ngsw-config.json  /static/",
     "dist": "ng build --prod && yarn ngsw-deploy",
     "proto": "cd protobuf && protoc_gen.bat",
-    "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/main/app.yaml",
-    "deploy-test": "gcloud app deploy --project=keen-ascent-205301 --no-promote server/gaefiles/main/app.yaml"
+    "deploy": "gcloud app deploy --project=keen-ascent-205301 server/gaefiles/app.yaml",
+    "deploy-test": "gcloud app deploy --project=keen-ascent-205301 --no-promote server/gaefiles/app.yaml"
   },
   "private": true,
   "dependencies": {

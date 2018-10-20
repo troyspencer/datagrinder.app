@@ -1,8 +1,8 @@
 package api
 
 import (
-	"gcloud/grpc_playground/server/draw"
-	"gcloud/grpc_playground/server/protobuf/datagrinder"
+	"github.com/troyspencer/datagrinder.app/draw"
+	"github.com/troyspencer/datagrinder.app/protobuf/datagrinder"
 
 	"golang.org/x/net/context"
 )

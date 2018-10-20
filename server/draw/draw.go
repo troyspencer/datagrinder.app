@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	"gcloud/grpc_playground/server/protobuf/datagrinder"
 	"image"
 	"image/color"
 	"image/draw"
 	"image/jpeg"
 	"log"
 	"net/http"
+
+	"github.com/troyspencer/datagrinder.app/protobuf/datagrinder"
 )
 
 // Draw takes a drawGrind object and converts it into an image.Image

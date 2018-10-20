@@ -4,11 +4,11 @@
 /dist
 /tmp
 /out-tsc
-/server/gaefiles/game-hosting/static/
-/server/gaefiles/main/static/
+/server/gaefiles/static/
 /server/debug.test
 /server/debug
 /server/protobuf/*
+*.exe
 
 # protobuf generated files
 /src/app/protobuf
