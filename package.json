@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "datagrinder.app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,6 @@
     "e2e": "ng e2e",
     "dev": "dev_appserver.py server/gaefiles/main/app.yaml",
     "serve": "ng serve --open",
-    "game-hosting": "cd server && game_serve.bat",
     "http": "cd server/gaefiles/main/static && http-server --gzip -p 8081",
     "serve-test": "yarn local && yarn http",
     "local": "ng build -c production-local && yarn ngsw-patch",
