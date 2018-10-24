@@ -9,6 +9,7 @@
 /server/debug
 /server/protobuf/*
 *.exe
+debug
 
 # protobuf generated files
 /src/app/protobuf

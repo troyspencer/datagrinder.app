@@ -3,44 +3,89 @@ package draw
 import (
 	"bytes"
 	"encoding/base64"
-	"encoding/json"
 	"image"
 	"image/color"
 	"image/draw"
 	"image/jpeg"
 	"log"
-	"net/http"
-
-	"github.com/troyspencer/datagrinder.app/protobuf/datagrinder"
 )
 
-// Draw takes a drawGrind object and converts it into an image.Image
-func Draw(g datagrinder.GrinderInput) image.Image {
+type drawImage struct {
+}
 
-	var width, height int
+// Draw takes a width, height, and shade setting and converts it into a base64 image string
+func Draw(width int32, height int32, setting int32) (base64Image string) {
+
+	color := imageColor(int(setting))
+
+	boundsWidth, boundsHeight := imageBounds(int(width), int(height))
+	shape := image.NewRGBA(image.Rect(0, 0, boundsWidth, boundsHeight))
+
+	draw.Draw(shape, shape.Bounds(), &image.Uniform{color}, image.ZP, draw.Src)
+
+	imageString := convertImageToBase64(shape)
+
+	return imageString
+}
+
+func imageColor(setting int) color.RGBA {
+	shade := imageShade(setting)
+	var alpha uint8 = 255
+	// return a gray with the specified shade
+	return color.RGBA{shade, shade, shade, alpha}
+}
+
+func imageShade(setting int) (shade uint8) {
+	// bounds enforcing
+	minSetting := 1
+	maxSetting := 5
+	maxShade := 255
+	setting = cap(setting, minSetting, maxSetting)
+
+	// create a shade from setting 0 = black to setting 4 = white
+	return uint8(maxShade * (int(setting) - 1) / (maxSetting - 1))
+}
+
+func imageBounds(width int, height int) (boundsWidth int, boundsHeight int) {
+	minSize := 0
 	maxSize := 1000
-	if g.Width >= g.Height {
-		width = maxSize
-		height = int(float32(maxSize) * float32(g.Height) / float32(g.Width))
-	} else {
-		width = int(float32(maxSize) * float32(g.Width) / float32(g.Height))
-		height = maxSize
+
+	// cap width and height to min and max size
+	width = cap(width, minSize, maxSize)
+	height = cap(height, minSize, maxSize)
+
+	boundsWidth, boundsHeight = scale(width, height, maxSize)
+
+	return boundsWidth, boundsHeight
+}
+
+func scale(x int, y int, max int) (scaledX int, scaledY int) {
+	if x <= 0 || y <= 0 {
+		return 0, 0
 	}
-	m := image.NewRGBA(image.Rect(0, 0, width, height))
 
-	blue := color.RGBA{uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), uint8(255 * (int(g.Setting) - 1) / 4), 255}
-	draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
-	return image.Image(m)
+	if x >= y {
+		scaledX = max
+		scaledY = int(float32(max) * float32(y) / float32(x))
+	} else {
+		scaledX = int(float32(max) * float32(x) / float32(y))
+		scaledY = max
+	}
+	return scaledX, scaledY
 }
 
-// Base64ImageResponse defines the response
-type Base64ImageResponse struct {
-	Base64url string `json:"base64url"`
+func cap(value int, min int, max int) (cappedValue int) {
+	if value > max {
+		value = max
+	} else if value < min {
+		value = min
+	}
+	return value
 }
 
-func ConvertImageToBase64(img *image.Image) string {
+func convertImageToBase64(img image.Image) string {
 	buffer := new(bytes.Buffer)
-	if err := jpeg.Encode(buffer, *img, nil); err != nil {
+	if err := jpeg.Encode(buffer, img, nil); err != nil {
 		log.Println("unable to encode image.")
 	}
 
@@ -48,9 +93,4 @@ func ConvertImageToBase64(img *image.Image) string {
 
 	img2html := "data:image/jpeg;base64," + imgBase64Str
 	return img2html
-}
-
-func base64Image(w http.ResponseWriter, img *image.Image) {
-	drawing := Base64ImageResponse{Base64url: ConvertImageToBase64(img)}
-	json.NewEncoder(w).Encode(drawing)
 }

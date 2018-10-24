@@ -20,7 +20,7 @@
             "remotePath": "",
             "port": 2345,
             "host": "127.0.0.1",
-            "program": "${workspaceFolder}/server/debug/debug.go",
+            "program": "${workspaceFolder}/server/gaefiles/serve.go",
             "env": {},
             "args": [],
             "showLog": true
