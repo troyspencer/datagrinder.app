@@ -1,10 +1,6 @@
 runtime: go111
 
 handlers:
-# API calls are handled by Go App
-- url: /api
-  script: auto
-
 # serve static requests from static dir
 - url: /static
   static_dir: static
@@ -28,7 +24,11 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots\.txt
 
+# API calls are handled by Go App
+- url: /api/.*
+  script: auto
+
 # If the path is empty, show static index.html file
-- url: /
+- url: /.*
   static_files: static/index.html
   upload: static/index.html
