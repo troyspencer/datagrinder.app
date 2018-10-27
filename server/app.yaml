@@ -28,7 +28,7 @@ handlers:
 - url: /api/.*
   script: auto
 
-# If the path is empty, show static index.html file
+# show static index.html file for all other paths to allow frontend to handle route on load
 - url: /.*
   static_files: static/index.html
   upload: static/index.html
