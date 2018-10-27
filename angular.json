@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "deployUrl": "/static/",
-            "outputPath": "./server/gaefiles/static",
+            "outputPath": "./server/static",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
